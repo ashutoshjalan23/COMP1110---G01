@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Public Transport Advisor | COMP1110</title>
+<style>
+/* ── Reset & Base ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1923;--bg2:#162233;--bg3:#1c2d42;
+  --surface:#1e3148;--surface2:#24384f;
+  --accent:#00d4ff;--accent2:#00b4d8;--accent-glow:rgba(0,212,255,.15);
+  --green:#00e676;--yellow:#ffd600;--red:#ff5252;
+  --magenta:#e040fb;--orange:#ff9100;
+  --text:#e0e8f0;--text2:#8fa3b8;--text3:#5a7080;
+  --border:#2a4060;
+  --radius:12px;--radius-sm:8px;
+  --shadow:0 4px 24px rgba(0,0,0,.35);
+  --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --mono:'Cascadia Code','Fira Code','Consolas',monospace;
+}
+html{font-size:15px}
+body{font-family:var(--font);background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--bg)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+/* ── Layout ────────────────────────────────────────────────────── */
+.app{display:grid;grid-template-columns:320px 1fr 380px;
+  grid-template-rows:auto 1fr;min-height:100vh;gap:0}
+.header{grid-column:1/-1;padding:16px 28px;
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border-bottom:1px solid var(--border);display:flex;align-items:center;gap:18px;z-index:10}
+.header h1{font-size:1.25rem;font-weight:700;letter-spacing:.5px}
+.header h1 span{color:var(--accent)}
+.header .badge{font-size:.7rem;background:var(--accent);color:var(--bg);
+  padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:1px}
+.header .subtitle{color:var(--text2);font-size:.8rem;margin-left:auto}
+
+.sidebar{background:var(--bg2);border-right:1px solid var(--border);
+  padding:20px;overflow-y:auto}
+.map-area{background:var(--bg);position:relative;overflow:hidden}
+.results-panel{background:var(--bg2);border-left:1px solid var(--border);
+  padding:20px;overflow-y:auto}
+
+/* ── Sidebar Controls ──────────────────────────────────────────── */
+.control-group{margin-bottom:22px}
+.control-group label{display:block;font-size:.75rem;font-weight:600;
+  color:var(--accent);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}
+.control-group select,.control-group input{width:100%;padding:10px 14px;
+  background:var(--surface);color:var(--text);border:1px solid var(--border);
+  border-radius:var(--radius-sm);font-size:.9rem;outline:none;
+  transition:border .2s,box-shadow .2s}
+.control-group select:focus,.control-group input:focus{
+  border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.control-group select option{background:var(--surface);color:var(--text)}
+
+.pref-checks{display:flex;flex-direction:column;gap:8px}
+.pref-check{display:flex;align-items:center;gap:10px;padding:10px 14px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);cursor:pointer;transition:all .2s}
+.pref-check:hover{border-color:var(--accent);background:var(--surface2)}
+.pref-check.active{border-color:var(--accent);background:var(--accent-glow)}
+.pref-check input[type=checkbox]{display:none}
+.pref-indicator{width:18px;height:18px;border:2px solid var(--border);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0}
+.pref-check.active .pref-indicator{border-color:var(--accent);background:var(--accent)}
+.pref-check.active .pref-indicator::after{content:'✓';color:var(--bg);
+  font-size:12px;font-weight:700}
+.pref-label{font-size:.85rem;font-weight:500}
+.pref-desc{font-size:.7rem;color:var(--text2)}
+
+.btn{width:100%;padding:13px;border:none;border-radius:var(--radius-sm);
+  font-size:.95rem;font-weight:700;cursor:pointer;transition:all .25s;
+  letter-spacing:.5px;text-transform:uppercase}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:var(--bg);box-shadow:0 4px 16px rgba(0,212,255,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,212,255,.4)}
+.btn-primary:active{transform:translateY(0)}
+.btn-secondary{background:var(--surface);color:var(--text);
+  border:1px solid var(--border);margin-top:8px}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent)}
+
+.swap-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);
+  background:var(--surface);color:var(--accent);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;margin:4px auto;
+  font-size:1.1rem;transition:all .2s}
+.swap-btn:hover{background:var(--accent);color:var(--bg);transform:rotate(180deg)}
+
+.stats-bar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.stat-card{background:var(--surface);border-radius:var(--radius-sm);
+  padding:12px;text-align:center;border:1px solid var(--border)}
+.stat-card .stat-val{font-size:1.3rem;font-weight:700;color:var(--accent)}
+.stat-card .stat-label{font-size:.65rem;color:var(--text2);
+  text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
+
+/* ── Map ───────────────────────────────────────────────────────── */
+svg.network-map{width:100%;height:100%}
+.map-title{position:absolute;top:14px;left:18px;font-size:.75rem;
+  color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+.map-legend{position:absolute;bottom:14px;left:18px;display:flex;gap:14px;
+  background:rgba(15,25,35,.85);padding:8px 16px;border-radius:var(--radius-sm);
+  border:1px solid var(--border)}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--text2)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+
+.stop-node{cursor:pointer;transition:all .2s}
+.stop-node:hover circle{r:8;fill-opacity:1}
+.stop-label{font-size:10px;fill:var(--text2);pointer-events:none;
+  font-family:var(--font);font-weight:500}
+
+.segment-line{stroke-width:2;fill:none;opacity:.35;transition:opacity .3s}
+.segment-line.highlight{opacity:1;stroke-width:3.5;filter:drop-shadow(0 0 6px currentColor)}
+.segment-line.dimmed{opacity:.08}
+
+.route-pulse{fill:var(--accent);r:5;opacity:0}
+.route-pulse.active{animation:pulse-move var(--dur,4s) linear infinite}
+
+@keyframes pulse-move{
+  0%{opacity:1;offset-distance:0%}
+  100%{opacity:1;offset-distance:100%}
+}
+
+.stop-node.origin circle{fill:var(--green)!important;r:9;
+  filter:drop-shadow(0 0 8px var(--green))}
+.stop-node.dest circle{fill:var(--red)!important;r:9;
+  filter:drop-shadow(0 0 8px var(--red))}
+
+/* ── Results Panel ─────────────────────────────────────────────── */
+.results-header{font-size:.75rem;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--accent);font-weight:600;margin-bottom:14px;
+  display:flex;align-items:center;gap:8px}
+.results-header .count{background:var(--accent);color:var(--bg);
+  padding:2px 8px;border-radius:10px;font-size:.7rem}
+
+.route-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);margin-bottom:12px;overflow:hidden;
+  cursor:pointer;transition:all .25s}
+.route-card:hover{border-color:var(--accent);transform:translateX(-3px);
+  box-shadow:0 4px 20px rgba(0,212,255,.12)}
+.route-card.selected{border-color:var(--accent);
+  box-shadow:0 0 0 2px var(--accent-glow),0 4px 20px rgba(0,212,255,.15)}
+
+.route-rank{display:flex;align-items:center;gap:10px;padding:12px 16px;
+  border-bottom:1px solid var(--border);background:var(--surface2)}
+.rank-num{width:28px;height:28px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-weight:700;font-size:.85rem}
+.rank-1{background:var(--accent);color:var(--bg)}
+.rank-2{background:var(--yellow);color:var(--bg)}
+.rank-3{background:var(--orange);color:var(--bg)}
+.rank-n{background:var(--text3);color:var(--bg)}
+.route-pref-tag{font-size:.65rem;padding:3px 8px;border-radius:10px;
+  background:var(--accent-glow);color:var(--accent);font-weight:600;margin-left:auto}
+
+.route-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:1px;background:var(--border)}
+.route-metric{background:var(--surface);padding:10px 12px;text-align:center}
+.route-metric .val{font-size:1rem;font-weight:700}
+.route-metric .lbl{font-size:.6rem;color:var(--text2);
+  text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.route-metric.best .val{color:var(--green)}
+
+.route-path{padding:14px 16px}
+.path-step{display:flex;align-items:flex-start;gap:10px;position:relative}
+.path-stop{display:flex;align-items:center;gap:8px;padding:3px 0}
+.path-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--text3);
+  flex-shrink:0;z-index:1;background:var(--bg)}
+.path-step:first-child .path-dot{border-color:var(--green);background:var(--green)}
+.path-step:last-child .path-dot{border-color:var(--red);background:var(--red)}
+.path-stop-name{font-size:.82rem;font-weight:500}
+.path-segment{display:flex;align-items:center;gap:8px;padding:2px 0 2px 4px;
+  margin-left:1px;border-left:2px dashed var(--text3)}
+.path-seg-info{font-size:.72rem;color:var(--text2);padding:4px 0 4px 14px}
+.mode-tag{font-size:.65rem;padding:2px 8px;border-radius:4px;font-weight:600;
+  color:#fff;letter-spacing:.3px}
+.mode-MTR{background:#e2261f}
+.mode-Bus{background:#33a853}
+.mode-Minibus{background:#f9a825}
+.mode-Ferry{background:#1976d2}
+.mode-Tram{background:#8e24aa}
+.mode-Walking{background:#607d8b}
+
+/* ── Score Breakdown (multi-pref) ──────────────────────────────── */
+.score-breakdown{padding:10px 16px;border-top:1px solid var(--border);
+  background:var(--surface2)}
+.score-row{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.75rem}
+.score-bar-bg{flex:1;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.score-bar{height:100%;border-radius:3px;transition:width .5s ease}
+.score-total{font-size:.8rem;font-weight:700;color:var(--accent);
+  text-align:right;padding:6px 0 0}
+
+/* ── Empty / Loading States ────────────────────────────────────── */
+.empty-state{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:40px 20px;text-align:center;color:var(--text3)}
+.empty-state .icon{font-size:2.5rem;margin-bottom:12px;opacity:.5}
+.empty-state p{font-size:.85rem;line-height:1.5}
+
+/* ── DFS Trace Panel ───────────────────────────────────────────── */
+.dfs-trace{margin-top:16px;padding:12px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  font-family:var(--mono);font-size:.72rem;color:var(--text2);
+  max-height:120px;overflow-y:auto}
+.dfs-trace .trace-title{color:var(--accent);font-weight:600;margin-bottom:6px;
+  font-family:var(--font);font-size:.7rem;text-transform:uppercase;letter-spacing:1px}
+
+/* ── Responsive ────────────────────────────────────────────────── */
+@media(max-width:1100px){
+  .app{grid-template-columns:280px 1fr 340px}
+}
+@media(max-width:900px){
+  .app{grid-template-columns:1fr;grid-template-rows:auto auto auto auto}
+  .sidebar{border-right:none;border-bottom:1px solid var(--border)}
+  .results-panel{border-left:none;border-top:1px solid var(--border)}
+  .map-area{min-height:400px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Header -->
+  <header class="header">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+    <h1><span>Smart</span> Public Transport Advisor</h1>
+    <span class="badge">COMP1110</span>
+    <span class="subtitle">Hong Kong  |  Group G-01  |  DFS Algorithm</span>
+  </header>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="control-group">
+      <label>Origin Station</label>
+      <select id="origin"></select>
+    </div>
+
+    <button class="swap-btn" onclick="swapStops()" title="Swap origin & destination">⇅</button>
+
+    <div class="control-group">
+      <label>Destination Station</label>
+      <select id="destination"></select>
+    </div>
+
+    <div class="control-group">
+      <label>Preference Mode(s)</label>
+      <div class="pref-checks">
+        <label class="pref-check active" data-pref="cheapest">
+          <input type="checkbox" checked>
+          <span class="pref-indicator"></span>
+          <div>
+            <div class="pref-label">💰 Cheapest</div>
+            <div class="pref-desc">Rank by total fare (HKD)</div>
+          </div>
+        </label>
+        <label class="pref-check" data-pref="fastest">
+          <input type="checkbox">
+          <span class="pref-indicator"></span>
+          <div>
+            <div class="pref-label">⚡ Fastest</div>
+            <div class="pref-desc">Rank by total travel time</div>
+          </div>
+        </label>
+        <label class="pref-check" data-pref="fewest">
+          <input type="checkbox">
+          <span class="pref-indicator"></span>
+          <div>
+            <div class="pref-label">🔄 Fewest Transfers</div>
+            <div class="pref-desc">Rank by number of segments</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" onclick="findRoutes()">🔍  Find Routes</button>
+    <button class="btn btn-secondary" onclick="resetAll()">Reset</button>
+
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-val" id="statStops">15</div>
+        <div class="stat-label">Stops</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="statSegs">54</div>
+        <div class="stat-label">Segments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="statModes">5</div>
+        <div class="stat-label">Modes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val" id="statRoutes">-</div>
+        <div class="stat-label">Routes Found</div>
+      </div>
+    </div>
+
+    <div class="dfs-trace" id="dfsTrace" style="display:none">
+      <div class="trace-title">DFS Execution Trace</div>
+      <div id="traceContent"></div>
+    </div>
+  </aside>
+
+  <!-- Map -->
+  <main class="map-area" id="mapArea">
+    <div class="map-title">Hong Kong Transport Network</div>
+    <svg class="network-map" id="networkMap"></svg>
+    <div class="map-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#e2261f"></div>MTR</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#33a853"></div>Bus</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f9a825"></div>Minibus</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#1976d2"></div>Ferry</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8e24aa"></div>Tram</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Origin</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Destination</div>
+    </div>
+  </main>
+
+  <!-- Results -->
+  <aside class="results-panel" id="resultsPanel">
+    <div class="empty-state" id="emptyState">
+      <div class="icon">🚇</div>
+      <p>Select an origin and destination,<br>choose your preference(s), then<br>click <strong>Find Routes</strong> to begin.</p>
+    </div>
+    <div id="resultsContent" style="display:none"></div>
+  </aside>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+//  DATA — Hand-crafted Hong Kong Transport Network
+// ═══════════════════════════════════════════════════════════════════
+
+const STOPS = {
+  S01:{id:"S01",name:"Central",lat:22.2819,lng:114.1584,lines:["MTR","Ferry","Tram","Bus"]},
+  S02:{id:"S02",name:"Admiralty",lat:22.2793,lng:114.1654,lines:["MTR","Bus"]},
+  S03:{id:"S03",name:"Wan Chai",lat:22.2775,lng:114.1734,lines:["MTR","Tram","Bus"]},
+  S04:{id:"S04",name:"Causeway Bay",lat:22.2802,lng:114.1841,lines:["MTR","Tram","Bus"]},
+  S05:{id:"S05",name:"Tsim Sha Tsui",lat:22.2974,lng:114.1722,lines:["MTR","Bus","Ferry"]},
+  S06:{id:"S06",name:"Jordan",lat:22.3049,lng:114.1718,lines:["MTR","Bus","Minibus"]},
+  S07:{id:"S07",name:"Mong Kok",lat:22.3192,lng:114.1694,lines:["MTR","Bus","Minibus"]},
+  S08:{id:"S08",name:"Prince Edward",lat:22.3245,lng:114.1682,lines:["MTR","Bus"]},
+  S09:{id:"S09",name:"Kowloon Tong",lat:22.3372,lng:114.1762,lines:["MTR","Bus","Minibus"]},
+  S10:{id:"S10",name:"Sha Tin",lat:22.3828,lng:114.1879,lines:["MTR","Bus","Minibus"]},
+  S11:{id:"S11",name:"HKU",lat:22.2840,lng:114.1350,lines:["MTR","Bus"]},
+  S12:{id:"S12",name:"Kennedy Town",lat:22.2813,lng:114.1285,lines:["MTR","Tram","Bus"]},
+  S13:{id:"S13",name:"North Point",lat:22.2913,lng:114.2000,lines:["MTR","Ferry","Tram","Bus"]},
+  S14:{id:"S14",name:"Quarry Bay",lat:22.2880,lng:114.2090,lines:["MTR","Bus"]},
+  S15:{id:"S15",name:"Tsuen Wan",lat:22.3733,lng:114.1178,lines:["MTR","Bus","Minibus"]},
+};
+
+const SEGMENTS = [
+  {id:"SEG01",from:"S01",to:"S02",mode:"MTR",dur:2,cost:5.2},
+  {id:"SEG02",from:"S02",to:"S01",mode:"MTR",dur:2,cost:5.2},
+  {id:"SEG03",from:"S02",to:"S03",mode:"MTR",dur:2,cost:5.2},
+  {id:"SEG04",from:"S03",to:"S02",mode:"MTR",dur:2,cost:5.2},
+  {id:"SEG05",from:"S03",to:"S04",mode:"MTR",dur:3,cost:5.2},
+  {id:"SEG06",from:"S04",to:"S03",mode:"MTR",dur:3,cost:5.2},
+  {id:"SEG07",from:"S01",to:"S05",mode:"MTR",dur:7,cost:11.5},
+  {id:"SEG08",from:"S05",to:"S01",mode:"MTR",dur:7,cost:11.5},
+  {id:"SEG09",from:"S05",to:"S06",mode:"MTR",dur:2,cost:4.9},
+  {id:"SEG10",from:"S06",to:"S05",mode:"MTR",dur:2,cost:4.9},
+  {id:"SEG11",from:"S06",to:"S07",mode:"MTR",dur:3,cost:4.9},
+  {id:"SEG12",from:"S07",to:"S06",mode:"MTR",dur:3,cost:4.9},
+  {id:"SEG13",from:"S07",to:"S08",mode:"MTR",dur:2,cost:4.5},
+  {id:"SEG14",from:"S08",to:"S07",mode:"MTR",dur:2,cost:4.5},
+  {id:"SEG15",from:"S08",to:"S09",mode:"MTR",dur:5,cost:6.2},
+  {id:"SEG16",from:"S09",to:"S08",mode:"MTR",dur:5,cost:6.2},
+  {id:"SEG17",from:"S09",to:"S10",mode:"MTR",dur:10,cost:10.5},
+  {id:"SEG18",from:"S10",to:"S09",mode:"MTR",dur:10,cost:10.5},
+  {id:"SEG19",from:"S11",to:"S01",mode:"MTR",dur:4,cost:6.0},
+  {id:"SEG20",from:"S01",to:"S11",mode:"MTR",dur:4,cost:6.0},
+  {id:"SEG21",from:"S11",to:"S12",mode:"MTR",dur:3,cost:5.2},
+  {id:"SEG22",from:"S12",to:"S11",mode:"MTR",dur:3,cost:5.2},
+  {id:"SEG23",from:"S04",to:"S13",mode:"MTR",dur:4,cost:5.8},
+  {id:"SEG24",from:"S13",to:"S04",mode:"MTR",dur:4,cost:5.8},
+  {id:"SEG25",from:"S13",to:"S14",mode:"MTR",dur:3,cost:5.2},
+  {id:"SEG26",from:"S14",to:"S13",mode:"MTR",dur:3,cost:5.2},
+  {id:"SEG27",from:"S02",to:"S09",mode:"MTR",dur:12,cost:13.8},
+  {id:"SEG28",from:"S09",to:"S02",mode:"MTR",dur:12,cost:13.8},
+  {id:"SEG29",from:"S01",to:"S05",mode:"Ferry",dur:25,cost:3.7},
+  {id:"SEG30",from:"S05",to:"S01",mode:"Ferry",dur:25,cost:3.7},
+  {id:"SEG31",from:"S13",to:"S05",mode:"Ferry",dur:18,cost:4.2},
+  {id:"SEG32",from:"S05",to:"S13",mode:"Ferry",dur:18,cost:4.2},
+  {id:"SEG33",from:"S12",to:"S01",mode:"Tram",dur:15,cost:3.0},
+  {id:"SEG34",from:"S01",to:"S12",mode:"Tram",dur:15,cost:3.0},
+  {id:"SEG35",from:"S01",to:"S03",mode:"Tram",dur:10,cost:3.0},
+  {id:"SEG36",from:"S03",to:"S01",mode:"Tram",dur:10,cost:3.0},
+  {id:"SEG37",from:"S03",to:"S04",mode:"Tram",dur:8,cost:3.0},
+  {id:"SEG38",from:"S04",to:"S03",mode:"Tram",dur:8,cost:3.0},
+  {id:"SEG39",from:"S04",to:"S13",mode:"Tram",dur:12,cost:3.0},
+  {id:"SEG40",from:"S13",to:"S04",mode:"Tram",dur:12,cost:3.0},
+  {id:"SEG41",from:"S01",to:"S05",mode:"Bus",dur:30,cost:6.5},
+  {id:"SEG42",from:"S05",to:"S01",mode:"Bus",dur:30,cost:6.5},
+  {id:"SEG43",from:"S05",to:"S07",mode:"Bus",dur:15,cost:5.8},
+  {id:"SEG44",from:"S07",to:"S05",mode:"Bus",dur:15,cost:5.8},
+  {id:"SEG45",from:"S07",to:"S10",mode:"Bus",dur:25,cost:9.2},
+  {id:"SEG46",from:"S10",to:"S07",mode:"Bus",dur:25,cost:9.2},
+  {id:"SEG47",from:"S07",to:"S15",mode:"Bus",dur:20,cost:7.5},
+  {id:"SEG48",from:"S15",to:"S07",mode:"Bus",dur:20,cost:7.5},
+  {id:"SEG49",from:"S05",to:"S15",mode:"Minibus",dur:35,cost:8.0},
+  {id:"SEG50",from:"S15",to:"S05",mode:"Minibus",dur:35,cost:8.0},
+  {id:"SEG51",from:"S09",to:"S10",mode:"Minibus",dur:15,cost:6.5},
+  {id:"SEG52",from:"S10",to:"S09",mode:"Minibus",dur:15,cost:6.5},
+  {id:"SEG53",from:"S06",to:"S07",mode:"Minibus",dur:5,cost:4.5},
+  {id:"SEG54",from:"S07",to:"S06",mode:"Minibus",dur:5,cost:4.5},
+];
+
+const MODE_COLORS = {
+  MTR:"#e2261f", Bus:"#33a853", Minibus:"#f9a825",
+  Ferry:"#1976d2", Tram:"#8e24aa", Walking:"#607d8b"
+};
+
+// ═══════════════════════════════════════════════════════════════════
+//  GRAPH & DFS
+// ═══════════════════════════════════════════════════════════════════
+
+// Build adjacency list
+const ADJ = {};
+Object.keys(STOPS).forEach(s => ADJ[s] = []);
+SEGMENTS.forEach(seg => {
+  if (!ADJ[seg.from]) ADJ[seg.from] = [];
+  ADJ[seg.from].push(seg);
+});
+
+let dfsStepLog = [];
+
+function findAllPathsDFS(origin, dest, maxDepth = 8) {
+  const allPaths = [];
+  const visited = new Set();
+  dfsStepLog = [];
+
+  function dfs(current, path, depth) {
+    if (current === dest) {
+      allPaths.push([...path]);
+      dfsStepLog.push(`  ✓ Path #${allPaths.length} found (${path.length} segments)`);
+      return;
+    }
+    if (depth >= maxDepth) return;
+
+    visited.add(current);
+    const edges = ADJ[current] || [];
+    for (const seg of edges) {
+      if (!visited.has(seg.to)) {
+        path.push(seg);
+        dfs(seg.to, path, depth + 1);
+        path.pop();
+      }
+    }
+    visited.delete(current);
+  }
+
+  dfsStepLog.push(`DFS: ${STOPS[origin].name} → ${STOPS[dest].name}`);
+  dfsStepLog.push(`Max depth: ${maxDepth}`);
+  dfs(origin, [], 0);
+  dfsStepLog.push(`Total paths: ${allPaths.length}`);
+  return allPaths;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  JOURNEY SCORING & RANKING
+// ═══════════════════════════════════════════════════════════════════
+
+function buildJourney(segPath) {
+  const totalCost = segPath.reduce((s,e) => s + e.cost, 0);
+  const totalTime = segPath.reduce((s,e) => s + e.dur, 0);
+  const numHops = segPath.length;
+  const stopIds = [segPath[0].from, ...segPath.map(e => e.to)];
+  return { segments: segPath, totalCost, totalTime, numHops, stopIds };
+}
+
+function normalise(vals) {
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  if (hi === lo) return vals.map(() => 0);
+  return vals.map(v => (v - lo) / (hi - lo));
+}
+
+const PREF_KEY = { cheapest:"totalCost", fastest:"totalTime", fewest:"numHops" };
+
+function rankJourneys(journeys, preferences) {
+  if (preferences.length === 1) {
+    const key = PREF_KEY[preferences[0]];
+    const sorted = [...journeys].sort((a, b) => a[key] - b[key]);
+    return { ranked: sorted, scores: null, breakdowns: null };
+  }
+  const weight = 1 / preferences.length;
+  const normed = {};
+  preferences.forEach(p => {
+    const key = PREF_KEY[p];
+    normed[p] = normalise(journeys.map(j => j[key]));
+  });
+  const scores = journeys.map((_, i) =>
+    preferences.reduce((s, p) => s + weight * normed[p][i], 0)
+  );
+  const indices = journeys.map((_, i) => i);
+  indices.sort((a, b) => scores[a] - scores[b]);
+
+  const ranked = indices.map(i => journeys[i]);
+  const sortedScores = indices.map(i => scores[i]);
+  const breakdowns = indices.map(i => {
+    const bd = {};
+    preferences.forEach(p => {
+      bd[p] = {
+        raw: journeys[i][PREF_KEY[p]],
+        norm: normed[p][i],
+        weighted: weight * normed[p][i]
+      };
+    });
+    return bd;
+  });
+  return { ranked, scores: sortedScores, breakdowns };
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  MAP RENDERING (SVG)
+// ═══════════════════════════════════════════════════════════════════
+
+let mapPositions = {};
+let currentHighlight = [];
+
+function initMap() {
+  const svg = document.getElementById("networkMap");
+  const rect = svg.parentElement.getBoundingClientRect();
+  const W = rect.width || 700, H = rect.height || 500;
+
+  // Project lat/lng to SVG coordinates
+  const lats = Object.values(STOPS).map(s => s.lat);
+  const lngs = Object.values(STOPS).map(s => s.lng);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+  const pad = 70;
+
+  Object.values(STOPS).forEach(s => {
+    const x = pad + ((s.lng - minLng) / (maxLng - minLng || 1)) * (W - 2 * pad);
+    const y = pad + (1 - (s.lat - minLat) / (maxLat - minLat || 1)) * (H - 2 * pad);
+    mapPositions[s.id] = { x, y };
+  });
+
+  renderMap(W, H);
+}
+
+function renderMap(W, H) {
+  const svg = document.getElementById("networkMap");
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+
+  let html = '<defs>';
+  // Arrow marker
+  html += '<marker id="arrow" viewBox="0 0 10 6" refX="10" refY="3" markerWidth="8" markerHeight="6" orient="auto"><path d="M0,0 L10,3 L0,6" fill="var(--text3)" opacity=".4"/></marker>';
+  html += '</defs>';
+
+  // Draw segments — group by unique pair to avoid overlap
+  const drawnPairs = new Set();
+  SEGMENTS.forEach(seg => {
+    const pairKey = [seg.from, seg.to, seg.mode].sort().join("-");
+    if (drawnPairs.has(pairKey)) return;
+    drawnPairs.add(pairKey);
+
+    const p1 = mapPositions[seg.from], p2 = mapPositions[seg.to];
+    if (!p1 || !p2) return;
+
+    // Offset lines of different modes between same stops
+    const basePair = [seg.from, seg.to].sort().join("-");
+    const allModes = SEGMENTS.filter(s =>
+      [s.from, s.to].sort().join("-") === basePair
+    ).map(s => s.mode).filter((v,i,a) => a.indexOf(v) === i);
+    const modeIdx = allModes.indexOf(seg.mode);
+    const offset = (modeIdx - (allModes.length - 1) / 2) * 4;
+
+    // Perpendicular offset
+    const dx = p2.x - p1.x, dy = p2.y - p1.y;
+    const len = Math.sqrt(dx*dx + dy*dy) || 1;
+    const nx = -dy/len * offset, ny = dx/len * offset;
+
+    html += `<line class="segment-line" data-seg="${seg.id}" data-from="${seg.from}" data-to="${seg.to}" data-mode="${seg.mode}"
+      x1="${p1.x + nx}" y1="${p1.y + ny}" x2="${p2.x + nx}" y2="${p2.y + ny}"
+      stroke="${MODE_COLORS[seg.mode]}" />`;
+  });
+
+  // Draw stops
+  Object.values(STOPS).forEach(s => {
+    const p = mapPositions[s.id];
+    // Label offset: push labels away from center of map
+    const cx = W/2, cy = H/2;
+    const lx = p.x > cx ? 12 : -12;
+    const anchor = p.x > cx ? "start" : "end";
+
+    html += `<g class="stop-node" data-id="${s.id}" onclick="selectStopFromMap('${s.id}')">
+      <circle cx="${p.x}" cy="${p.y}" r="6" fill="var(--accent)" fill-opacity=".7" stroke="var(--accent)" stroke-width="1.5"/>
+      <text class="stop-label" x="${p.x + lx}" y="${p.y + 4}" text-anchor="${anchor}">${s.name}</text>
+    </g>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+function highlightRoute(journey) {
+  // Reset all
+  document.querySelectorAll(".segment-line").forEach(l => {
+    l.classList.remove("highlight", "dimmed");
+    l.classList.add("dimmed");
+  });
+  document.querySelectorAll(".stop-node").forEach(n => {
+    n.classList.remove("origin", "dest");
+  });
+
+  if (!journey) {
+    document.querySelectorAll(".segment-line").forEach(l => l.classList.remove("dimmed"));
+    return;
+  }
+
+  // Highlight segments in this route
+  const routeStopPairs = journey.segments.map(s => ({ from: s.from, to: s.to, mode: s.mode }));
+  document.querySelectorAll(".segment-line").forEach(line => {
+    const lFrom = line.dataset.from, lTo = line.dataset.to, lMode = line.dataset.mode;
+    const match = routeStopPairs.some(r =>
+      ((r.from === lFrom && r.to === lTo) || (r.from === lTo && r.to === lFrom)) && r.mode === lMode
+    );
+    if (match) {
+      line.classList.remove("dimmed");
+      line.classList.add("highlight");
+    }
+  });
+
+  // Mark origin / destination
+  const originId = journey.stopIds[0];
+  const destId = journey.stopIds[journey.stopIds.length - 1];
+  document.querySelector(`.stop-node[data-id="${originId}"]`)?.classList.add("origin");
+  document.querySelector(`.stop-node[data-id="${destId}"]`)?.classList.add("dest");
+
+  // Animate a pulse along the route path
+  animateRoutePulse(journey);
+}
+
+function animateRoutePulse(journey) {
+  // Remove old pulse
+  document.querySelectorAll(".route-pulse-g").forEach(el => el.remove());
+
+  const svg = document.getElementById("networkMap");
+  const stops = journey.stopIds;
+  let pathD = "";
+  for (let i = 0; i < stops.length; i++) {
+    const p = mapPositions[stops[i]];
+    pathD += (i === 0 ? "M" : "L") + p.x + "," + p.y;
+  }
+
+  const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  g.classList.add("route-pulse-g");
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", pathD);
+  path.setAttribute("fill", "none");
+  path.setAttribute("stroke", "none");
+  path.id = "routePulsePath";
+  g.appendChild(path);
+
+  const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  circle.setAttribute("r", "5");
+  circle.setAttribute("fill", "var(--accent)");
+  circle.style.filter = "drop-shadow(0 0 6px var(--accent))";
+
+  const anim = document.createElementNS("http://www.w3.org/2000/svg", "animateMotion");
+  anim.setAttribute("dur", Math.max(2, journey.numHops * 0.8) + "s");
+  anim.setAttribute("repeatCount", "indefinite");
+  const mpath = document.createElementNS("http://www.w3.org/2000/svg", "mpath");
+  mpath.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#routePulsePath");
+  anim.appendChild(mpath);
+  circle.appendChild(anim);
+  g.appendChild(circle);
+
+  svg.appendChild(g);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  UI LOGIC
+// ═══════════════════════════════════════════════════════════════════
+
+let currentJourneys = [];
+let selectedPrefs = ["cheapest"];
+
+function initUI() {
+  const originSel = document.getElementById("origin");
+  const destSel = document.getElementById("destination");
+
+  const sorted = Object.values(STOPS).sort((a,b) => a.name.localeCompare(b.name));
+  sorted.forEach(s => {
+    originSel.add(new Option(`${s.name} (${s.id})`, s.id));
+    destSel.add(new Option(`${s.name} (${s.id})`, s.id));
+  });
+  destSel.selectedIndex = 1;
+
+  // Preference checkboxes
+  document.querySelectorAll(".pref-check").forEach(el => {
+    el.addEventListener("click", e => {
+      e.preventDefault();
+      el.classList.toggle("active");
+      updateSelectedPrefs();
+    });
+  });
+
+  document.getElementById("statStops").textContent = Object.keys(STOPS).length;
+  document.getElementById("statSegs").textContent = SEGMENTS.length;
+}
+
+function updateSelectedPrefs() {
+  selectedPrefs = [];
+  document.querySelectorAll(".pref-check.active").forEach(el => {
+    selectedPrefs.push(el.dataset.pref);
+  });
+}
+
+function swapStops() {
+  const o = document.getElementById("origin");
+  const d = document.getElementById("destination");
+  const tmp = o.value;
+  o.value = d.value;
+  d.value = tmp;
+}
+
+function selectStopFromMap(stopId) {
+  const o = document.getElementById("origin");
+  const d = document.getElementById("destination");
+  // If origin is already set to something else, set destination
+  if (o.value !== stopId && d.value !== stopId) {
+    if (!o._userSet) { o.value = stopId; o._userSet = true; }
+    else { d.value = stopId; o._userSet = false; }
+  }
+}
+
+function resetAll() {
+  document.getElementById("origin").selectedIndex = 0;
+  document.getElementById("destination").selectedIndex = 1;
+  document.getElementById("emptyState").style.display = "";
+  document.getElementById("resultsContent").style.display = "none";
+  document.getElementById("dfsTrace").style.display = "none";
+  document.getElementById("statRoutes").textContent = "-";
+  currentJourneys = [];
+  highlightRoute(null);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  FIND ROUTES — main action
+// ═══════════════════════════════════════════════════════════════════
+
+function findRoutes() {
+  const origin = document.getElementById("origin").value;
+  const dest = document.getElementById("destination").value;
+
+  if (origin === dest) {
+    alert("Origin and destination cannot be the same.");
+    return;
+  }
+  if (selectedPrefs.length === 0) {
+    alert("Please select at least one preference mode.");
+    return;
+  }
+
+  // Run DFS
+  const paths = findAllPathsDFS(origin, dest);
+  document.getElementById("statRoutes").textContent = paths.length;
+
+  // Show DFS trace
+  const traceEl = document.getElementById("dfsTrace");
+  traceEl.style.display = "";
+  document.getElementById("traceContent").textContent = dfsStepLog.join("\n");
+
+  if (paths.length === 0) {
+    document.getElementById("emptyState").innerHTML =
+      '<div class="icon">🚫</div><p>No routes found between these stops.</p>';
+    document.getElementById("emptyState").style.display = "";
+    document.getElementById("resultsContent").style.display = "none";
+    return;
+  }
+
+  // Build & rank
+  const journeys = paths.map(buildJourney);
+  const { ranked, scores, breakdowns } = rankJourneys(journeys, selectedPrefs);
+  currentJourneys = ranked;
+
+  const top = ranked.slice(0, 8);
+  renderResults(top, scores ? scores.slice(0, 8) : null,
+    breakdowns ? breakdowns.slice(0, 8) : null);
+
+  // Highlight best route on map
+  highlightRoute(top[0]);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  RENDER RESULTS
+// ═══════════════════════════════════════════════════════════════════
+
+function fmtCost(c) { return `HK$${c.toFixed(1)}`; }
+function fmtTime(m) { return m >= 60 ? `${Math.floor(m/60)}h ${Math.round(m%60)}m` : `${Math.round(m)}m`; }
+
+function renderResults(journeys, scores, breakdowns) {
+  document.getElementById("emptyState").style.display = "none";
+  const container = document.getElementById("resultsContent");
+  container.style.display = "";
+
+  const prefLabel = selectedPrefs.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(" + ");
+
+  let html = `<div class="results-header">
+    Ranked Routes <span class="count">${currentJourneys.length} total</span>
+    <span style="margin-left:auto;font-size:.65rem;color:var(--text2)">by ${prefLabel}</span>
+  </div>`;
+
+  // Find best values for highlighting
+  const bestCost = Math.min(...journeys.map(j => j.totalCost));
+  const bestTime = Math.min(...journeys.map(j => j.totalTime));
+  const bestHops = Math.min(...journeys.map(j => j.numHops));
+
+  journeys.forEach((j, i) => {
+    const rankClass = i === 0 ? "rank-1" : i === 1 ? "rank-2" : i === 2 ? "rank-3" : "rank-n";
+
+    html += `<div class="route-card ${i === 0 ? 'selected' : ''}" data-idx="${i}" onclick="selectRoute(${i})">`;
+
+    // Rank header
+    html += `<div class="route-rank">
+      <div class="rank-num ${rankClass}">${i + 1}</div>
+      <span style="font-size:.8rem;font-weight:600">Route #${i + 1}</span>`;
+    if (scores) {
+      html += `<span class="route-pref-tag">Score: ${scores[i].toFixed(3)}</span>`;
+    }
+    html += `</div>`;
+
+    // Metrics
+    html += `<div class="route-metrics">
+      <div class="route-metric ${j.totalCost === bestCost ? 'best' : ''}">
+        <div class="val">${fmtCost(j.totalCost)}</div><div class="lbl">Cost</div>
+      </div>
+      <div class="route-metric ${j.totalTime === bestTime ? 'best' : ''}">
+        <div class="val">${fmtTime(j.totalTime)}</div><div class="lbl">Time</div>
+      </div>
+      <div class="route-metric ${j.numHops === bestHops ? 'best' : ''}">
+        <div class="val">${j.numHops}</div><div class="lbl">Segments</div>
+      </div>
+    </div>`;
+
+    // Path visualization
+    html += `<div class="route-path">`;
+    j.stopIds.forEach((sid, si) => {
+      html += `<div class="path-step">
+        <div class="path-dot"></div>
+        <span class="path-stop-name">${STOPS[sid].name}</span>
+      </div>`;
+      if (si < j.segments.length) {
+        const seg = j.segments[si];
+        html += `<div class="path-segment">
+          <div class="path-seg-info">
+            <span class="mode-tag mode-${seg.mode}">${seg.mode}</span>
+            &nbsp; ${fmtTime(seg.dur)} &nbsp;·&nbsp; ${fmtCost(seg.cost)}
+          </div>
+        </div>`;
+      }
+    });
+    html += `</div>`;
+
+    // Score breakdown for multi-pref
+    if (breakdowns && breakdowns[i]) {
+      html += `<div class="score-breakdown">`;
+      selectedPrefs.forEach(p => {
+        const d = breakdowns[i][p];
+        const label = p === "cheapest" ? fmtCost(d.raw) : p === "fastest" ? fmtTime(d.raw) : d.raw;
+        const barPct = Math.round(d.norm * 100);
+        html += `<div class="score-row">
+          <span style="width:60px;text-transform:capitalize;font-weight:500">${p}</span>
+          <span style="width:55px;text-align:right;color:var(--text2)">${label}</span>
+          <div class="score-bar-bg"><div class="score-bar" style="width:${barPct}%;background:${
+            barPct < 30 ? 'var(--green)' : barPct < 60 ? 'var(--yellow)' : 'var(--red)'
+          }"></div></div>
+          <span style="width:40px;text-align:right;font-family:var(--mono);font-size:.7rem">${d.weighted.toFixed(3)}</span>
+        </div>`;
+      });
+      html += `<div class="score-total">Composite: ${scores[i].toFixed(3)}</div>`;
+      html += `</div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  if (currentJourneys.length > 8) {
+    html += `<p style="text-align:center;color:var(--text3);font-size:.75rem;padding:8px">
+      Showing top 8 of ${currentJourneys.length} routes</p>`;
+  }
+
+  container.innerHTML = html;
+}
+
+function selectRoute(idx) {
+  document.querySelectorAll(".route-card").forEach(c => c.classList.remove("selected"));
+  document.querySelector(`.route-card[data-idx="${idx}"]`)?.classList.add("selected");
+  highlightRoute(currentJourneys[idx]);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════════════
+window.addEventListener("DOMContentLoaded", () => {
+  initUI();
+  initMap();
+});
+window.addEventListener("resize", () => initMap());
+</script>
+</body>
+</html>
