@@ -26,6 +26,13 @@ from ui import (
     mode_label, hline_mid,
 )
 
+# ── Real-time geocoding (from check.py) ──────────────────────────────────────
+try:
+    from check import geocode as _rt_geocode, HK_LOCATIONS, haversine as _haversine
+    _RT_GEO = True
+except ImportError:
+    _RT_GEO = False
+
 # ── Global state ─────────────────────────────────────────────────────────────
 network = None
 
@@ -72,33 +79,62 @@ def get_valid_input(prompt, valid_options):
 
 
 def get_stop_input(prompt_text):
-    """Get a valid stop from user (by name or ID). Returns stop_id or None."""
+    """
+    Get a valid stop from user.
+    Accepts stop ID, exact name, partial name, or any HK location name/address.
+    If a location is geocoded and not an exact stop, finds the nearest stop.
+    """
     while True:
         raw = input(f"  {BOLD}{prompt_text}{RESET} ").strip()
         if raw.upper() == "B":
             return None
 
-        # Try as stop ID first
-        if raw.upper() in [s.upper() for s in network.stops]:
-            for sid in network.stops:
-                if sid.upper() == raw.upper():
-                    return sid
+        # 1. Try as stop ID
+        for sid in network.stops:
+            if sid.upper() == raw.upper():
+                return sid
 
-        # Try as stop name
+        # 2. Try as exact stop name
         sid = network.get_stop_id_by_name(raw)
         if sid:
             return sid
 
-        print(error("Stop not found. Enter a stop name or ID (or 'B' to go back)."))
-        # Show suggestions
+        # 3. Partial name match (single unambiguous)
         matches = [
-            (s.id, s.name) for s in network.stops.values()
+            s for s in network.stops.values()
             if raw.lower() in s.name.lower()
         ]
+        if len(matches) == 1:
+            print(info(f"Matched: {matches[0].name}"))
+            return matches[0].id
+
+        # 4. Real-time geocoding → nearest network stop
+        if _RT_GEO:
+            coords = _rt_geocode(raw)
+            if coords:
+                lat, lon = coords
+                nearest, min_d = None, float("inf")
+                for stop in network.stops.values():
+                    if stop.latitude and stop.longitude:
+                        d = _haversine(lat, lon, stop.latitude, stop.longitude)
+                        if d < min_d:
+                            min_d, nearest = d, stop
+                if nearest:
+                    print(info(
+                        f"Geocoded '{raw}' → nearest stop: "
+                        f"{BOLD}{nearest.name}{RESET} ({min_d:.0f} m away)"
+                    ))
+                    confirm = input(
+                        f"  {BOLD}Use {nearest.name}? [Y/n]: {RESET}"
+                    ).strip().upper()
+                    if confirm != "N":
+                        return nearest.id
+
+        print(error("Stop not found. Enter a stop name, ID, or any HK location (or 'B' to back)."))
         if matches:
             print(info("Did you mean:"))
-            for mid, mname in matches[:5]:
-                print(f"      {DIM}{mid}{RESET} - {mname}")
+            for s in matches[:5]:
+                print(f"      {DIM}{s.id}{RESET} - {s.name}")
 
 
 def get_preference():
@@ -186,7 +222,12 @@ def plan_journey():
         return
 
     # ── Build, score, rank ───────────────────────────────────────────────
-    journeys = build_journeys(paths, network)
+    # Use real-time APIs when "fastest" is among the selected preferences
+    use_realtime = "fastest" in preferences
+    if use_realtime:
+        print(info("Fetching live traffic & ETA data for fastest ranking..."))
+        print()
+    journeys = build_journeys(paths, network, realtime=use_realtime)
 
     explanations = {
         "cheapest": "Total cost (sum of all segment fares) in HKD.",
