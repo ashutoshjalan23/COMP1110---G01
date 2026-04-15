@@ -80,7 +80,7 @@ class Network:
 
     # ---- DFS path finder ----
 
-    def find_all_paths(self, origin_id, dest_id, max_depth=10):
+    def find_all_paths(self, origin_id, dest_id, max_depth=6):
         """
         DFS: enumerate ALL simple paths from origin to destination.
 
@@ -117,3 +117,32 @@ class Network:
 
         _dfs(origin_id, [])
         return all_paths
+
+    def find_paths_with_stats(self, origin_id, dest_id, max_depth=6):
+        """
+        Same as find_all_paths but also computes journey statistics:
+        - total duration (minutes)
+        - total cost (HKD)
+        - number of segments (transfers + 1)
+
+        Returns a list of dicts:
+            {
+                'segments': [Segment, ...],
+                'duration': int,   # total minutes
+                'cost': float,     # total HKD
+                'transfers': int   # number of vehicle changes
+            }
+        """
+        raw_paths = self.find_all_paths(origin_id, dest_id, max_depth)
+        enriched = []
+        for segments in raw_paths:
+            duration = sum(seg.duration for seg in segments)
+            cost = sum(seg.cost for seg in segments)
+            transfers = len(segments) - 1
+            enriched.append({
+                'segments': segments,
+                'duration': duration,
+                'cost': cost,
+                'transfers': transfers
+            })
+        return enriched
