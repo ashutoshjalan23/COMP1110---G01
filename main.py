@@ -6,11 +6,13 @@ An interactive, terminal-based journey planner for Hong Kong's public
 transport network. Uses DFS to enumerate all candidate routes and ranks
 them transparently by user-chosen preference (cheapest / fastest / fewest).
 
-Usage:  python main.py
+Usage:  python main.py                (interactive terminal UI)
+        python main.py --export-web   (generate JSON for Next.js visualizer)
 """
 
 import sys
 import os
+import json
 
 # Ensure imports work when running from any directory
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -49,6 +51,59 @@ def load_data():
     except Exception as e:
         print(error(f"Failed to load network: {e}"))
         return False
+
+
+# ── NEW: Web Export Function ─────────────────────────────────────────────────
+
+def export_for_web(origin_id="S01", dest_id="S10", max_depth=5):
+    """
+    Generate latest_results.json for the Next.js visualizer.
+    Uses find_paths_with_stats() from network.py to get enriched data.
+    Default origin/destination can be changed to any valid stop IDs.
+    """
+    if network is None:
+        print("Network not loaded.")
+        return
+
+    # Use the new method that returns duration, cost, transfers
+    enriched_paths = network.find_paths_with_stats(origin_id, dest_id, max_depth)
+
+    if not enriched_paths:
+        print(f"No routes found from {origin_id} to {dest_id}.")
+        return
+
+    # Convert Segment objects to dicts for JSON serialization
+    output = []
+    for ep in enriched_paths:
+        segments_data = []
+        for seg in ep['segments']:
+            segments_data.append({
+                'seg_id': seg.seg_id,
+                'from_stop': seg.from_stop,
+                'to_stop': seg.to_stop,
+                'mode': seg.mode,
+                'duration': seg.duration,
+                'cost': seg.cost,
+                'from_stop_name': network.get_stop_name(seg.from_stop),
+                'to_stop_name': network.get_stop_name(seg.to_stop),
+            })
+        output.append({
+            'segments': segments_data,
+            'duration': ep['duration'],
+            'cost': ep['cost'],
+            'transfers': ep['transfers']
+        })
+
+    # Save to data/latest_results.json
+    os.makedirs('data', exist_ok=True)
+    out_path = os.path.join('data', 'latest_results.json')
+    with open(out_path, 'w', encoding='utf-8') as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+
+    print(f"✅ Exported {len(output)} journeys to {out_path}")
+    print(f"   Origin: {network.get_stop_name(origin_id)} → Destination: {network.get_stop_name(dest_id)}")
+    for i, j in enumerate(output[:3]):
+        print(f"   Journey {i+1}: {j['duration']} min, ${j['cost']}, {j['transfers']} transfer(s)")
 
 
 # ── Menu Screens ─────────────────────────────────────────────────────────────
@@ -467,7 +522,18 @@ def show_about():
 
 def main():
     """Application entry point."""
-    # Load data
+    # Check for command-line flag to export JSON for web
+    if len(sys.argv) > 1 and sys.argv[1] == "--export-web":
+        # Quick export mode – no UI
+        print("Loading transport network...")
+        if not load_data():
+            print("Failed to load network data.")
+            sys.exit(1)
+        # Use sample origin/destination (adjust if needed)
+        export_for_web(origin_id="S01", dest_id="S10")
+        return
+
+    # Normal interactive mode
     print(info("Loading transport network..."))
     if not load_data():
         print(error("Cannot start without network data. Exiting."))
