@@ -1,57 +1,54 @@
 # Smart Public Transport Advisor
 
-This repository is currently an early-stage Next.js prototype for a Hong Kong public transport visualizer.
-We want to build a website that uses Hong Kong Government transport data to help users explore and compare route options clearly and transparently.
+This project combines a Python route-planning engine with a Next.js frontend to explore Hong Kong public transport journeys on a map. The sample network is loaded from CSV files in `data/`, and the website now gets stops, segments, route planning, and live ETA information directly from the Python backend instead of duplicating that logic in TypeScript.
 
-Right now, this project should be treated as roughly 10% complete.
+## What it does
 
-## Current state
+- loads a sample Hong Kong transport network from CSV
+- finds candidate routes with depth-first search
+- ranks journeys by cheapest, fastest, or fewest hops
+- applies live MTR and KMB waits plus TDAS traffic adjustments in the Python backend
+- visualizes stops, links, and selected journeys in the Next.js map UI
 
-What exists today:
+## Project layout
 
-- a Python prototype for route search
-- a small sample CSV dataset
-- basic scoring for cheapest, fastest, and fewest segments
-- an early Next.js website visualizer with a map, controls, and route results
-
-## Project direction
-
-The goal is to gather official Hong Kong transport data and turn it into a smart advisor that can:
-
-- compare route options
-- explain trade-offs between time, cost, and transfers
-- surface more practical travel suggestions over time
-
-## Files
-
-Python prototype (root):
-- `main.py` contains the terminal prototype entry point
-- `network.py` contains the graph model and DFS search
-- `journey.py` contains journey scoring and ranking
+Python backend and CLI (root):
+- `backend_api.py` serves the website data on `http://127.0.0.1:8000`
+- `main.py` runs the terminal prototype
+- `network.py` contains the graph model and DFS path search
+- `journey.py` contains scoring, ranking, and real-time adjustments
 - `file_io.py` loads and saves CSV data
+- `check.py` contains live transport API helpers
 - `ui.py` contains terminal UI helpers
-- `check.py` contains validation utilities
-- `dashboard.html` contains a web dashboard
-- `data/` holds the sample development dataset (CSV files and results)
 
-Next.js website (in `spline-ui/`):
-- `spline-ui/app/` contains the main Next.js App Router pages and API routes
-- `spline-ui/app/components/` contains React UI components (map, panels, etc.)
-- `spline-ui/app/lib/` contains route logic and utilities
-- `spline-ui/package.json` defines dependencies and scripts
-- `spline-ui/public/` contains static assets
+Website frontend (`spline-ui/`):
+- `spline-ui/app/page.tsx` loads the network from the Python backend
+- `spline-ui/app/components/` contains the planner, ETA panel, and map
+- `spline-ui/app/lib/` contains shared frontend types, backend URL helpers, and UI constants
+
+Data:
+- `data/stops.csv` stores stop IDs, names, coordinates, and available lines
+- `data/segments.csv` stores directed links, modes, durations, and fares
 
 ## Run locally
 
-Terminal prototype (from root):
+1. Start the Python backend from the repo root:
+
+```bash
+python backend_api.py
+```
+
+2. Start the terminal prototype if you want the CLI:
 
 ```bash
 python main.py
 ```
 
-Website prototype (from `spline-ui/` directory):
+3. Start the website in `spline-ui/`:
 
 ```bash
 npm install
 npm run dev
 ```
+
+The frontend expects the backend at `http://127.0.0.1:8000` by default. You can override that with `NEXT_PUBLIC_BACKEND_URL`.

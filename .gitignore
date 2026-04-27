@@ -1,1 +1,3 @@
-__pycache__
+__pycache__/
+spline-ui/.next-dev*.log
+.backend*.log

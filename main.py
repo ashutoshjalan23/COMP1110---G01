@@ -1,4 +1,4 @@
-"""
+﻿"""
 main.py - Smart Public Transport Advisor
 COMP1110 | Semester 2, 2025-2026 | Group G-01
 
@@ -6,18 +6,15 @@ An interactive, terminal-based journey planner for Hong Kong's public
 transport network. Uses DFS to enumerate all candidate routes and ranks
 them transparently by user-chosen preference (cheapest / fastest / fewest).
 
-Usage:  python main.py                (interactive terminal UI)
-        python main.py --export-web   (generate JSON for Next.js visualizer)
+Usage:  python main.py
 """
 
 import sys
 import os
-import json
 
 # Ensure imports work when running from any directory
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from network import Network
 from journey import build_journeys, rank_journeys, rank_journeys_multi, PREFERENCE_KEYS
 from file_io import load_network, save_journey_results
 from ui import (
@@ -28,14 +25,14 @@ from ui import (
     mode_label, hline_mid,
 )
 
-# ── Real-time geocoding (from check.py) ──────────────────────────────────────
+# â”€â”€ Real-time geocoding (from check.py) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 try:
     from check import geocode as _rt_geocode, HK_LOCATIONS, haversine as _haversine
     _RT_GEO = True
 except ImportError:
     _RT_GEO = False
 
-# ── Global state ─────────────────────────────────────────────────────────────
+# â”€â”€ Global state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 network = None
 
 
@@ -53,60 +50,8 @@ def load_data():
         return False
 
 
-# ── NEW: Web Export Function ─────────────────────────────────────────────────
 
-def export_for_web(origin_id="S01", dest_id="S10", max_depth=5):
-    """
-    Generate latest_results.json for the Next.js visualizer.
-    Uses find_paths_with_stats() from network.py to get enriched data.
-    Default origin/destination can be changed to any valid stop IDs.
-    """
-    if network is None:
-        print("Network not loaded.")
-        return
-
-    # Use the new method that returns duration, cost, transfers
-    enriched_paths = network.find_paths_with_stats(origin_id, dest_id, max_depth)
-
-    if not enriched_paths:
-        print(f"No routes found from {origin_id} to {dest_id}.")
-        return
-
-    # Convert Segment objects to dicts for JSON serialization
-    output = []
-    for ep in enriched_paths:
-        segments_data = []
-        for seg in ep['segments']:
-            segments_data.append({
-                'seg_id': seg.seg_id,
-                'from_stop': seg.from_stop,
-                'to_stop': seg.to_stop,
-                'mode': seg.mode,
-                'duration': seg.duration,
-                'cost': seg.cost,
-                'from_stop_name': network.get_stop_name(seg.from_stop),
-                'to_stop_name': network.get_stop_name(seg.to_stop),
-            })
-        output.append({
-            'segments': segments_data,
-            'duration': ep['duration'],
-            'cost': ep['cost'],
-            'transfers': ep['transfers']
-        })
-
-    # Save to data/latest_results.json
-    os.makedirs('data', exist_ok=True)
-    out_path = os.path.join('data', 'latest_results.json')
-    with open(out_path, 'w', encoding='utf-8') as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
-
-    print(f"✅ Exported {len(output)} journeys to {out_path}")
-    print(f"   Origin: {network.get_stop_name(origin_id)} → Destination: {network.get_stop_name(dest_id)}")
-    for i, j in enumerate(output[:3]):
-        print(f"   Journey {i+1}: {j['duration']} min, ${j['cost']}, {j['transfers']} transfer(s)")
-
-
-# ── Menu Screens ─────────────────────────────────────────────────────────────
+# â”€â”€ Menu Screens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def show_main_menu():
     """Display the main menu and return user choice."""
@@ -163,7 +108,7 @@ def get_stop_input(prompt_text):
             print(info(f"Matched: {matches[0].name}"))
             return matches[0].id
 
-        # 4. Real-time geocoding → nearest network stop
+        # 4. Real-time geocoding â†’ nearest network stop
         if _RT_GEO:
             coords = _rt_geocode(raw)
             if coords:
@@ -176,7 +121,7 @@ def get_stop_input(prompt_text):
                             min_d, nearest = d, stop
                 if nearest:
                     print(info(
-                        f"Geocoded '{raw}' → nearest stop: "
+                        f"Geocoded '{raw}' â†’ nearest stop: "
                         f"{BOLD}{nearest.name}{RESET} ({min_d:.0f} m away)"
                     ))
                     confirm = input(
@@ -222,7 +167,7 @@ def get_preference():
         print(error("Invalid choice. Enter 1, 2, 3 or combine them (e.g. 1,2)."))
 
 
-# ── Core Features ────────────────────────────────────────────────────────────
+# â”€â”€ Core Features â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def plan_journey():
     """Main journey planning flow."""
@@ -262,7 +207,7 @@ def plan_journey():
     print(success(f"Preference(s): {pref_label}"))
     print()
 
-    # ── Run DFS ──────────────────────────────────────────────────────────
+    # â”€â”€ Run DFS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     print(section_header("DFS ROUTE SEARCH"))
     print()
     print(info("Running Depth-First Search..."))
@@ -276,7 +221,7 @@ def plan_journey():
         input(f"\n  {DIM}Press Enter to continue...{RESET}")
         return
 
-    # ── Build, score, rank ───────────────────────────────────────────────
+    # â”€â”€ Build, score, rank â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     # Use real-time APIs when "fastest" is among the selected preferences
     use_realtime = "fastest" in preferences
     if use_realtime:
@@ -291,7 +236,7 @@ def plan_journey():
     }
 
     if len(preferences) == 1:
-        # ── Single preference mode ───────────────────────────────────────
+        # â”€â”€ Single preference mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         preference = preferences[0]
         ranked = rank_journeys(journeys, preference)
 
@@ -313,7 +258,7 @@ def plan_journey():
             print(warning(f"Could not save results: {e}"))
 
     else:
-        # ── Multi-preference combined mode ───────────────────────────────
+        # â”€â”€ Multi-preference combined mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         ranked, scores, breakdowns = rank_journeys_multi(journeys, preferences)
 
         print(section_header("SCORING EXPLANATION (COMBINED)"))
@@ -518,22 +463,10 @@ def show_about():
     input(f"  {DIM}Press Enter to continue...{RESET}")
 
 
-# ── Main Loop ────────────────────────────────────────────────────────────────
+# â”€â”€ Main Loop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def main():
     """Application entry point."""
-    # Check for command-line flag to export JSON for web
-    if len(sys.argv) > 1 and sys.argv[1] == "--export-web":
-        # Quick export mode – no UI
-        print("Loading transport network...")
-        if not load_data():
-            print("Failed to load network data.")
-            sys.exit(1)
-        # Use sample origin/destination (adjust if needed)
-        export_for_web(origin_id="S01", dest_id="S10")
-        return
-
-    # Normal interactive mode
     print(info("Loading transport network..."))
     if not load_data():
         print(error("Cannot start without network data. Exiting."))
