@@ -159,7 +159,7 @@ def print_journey(journey, rank, preference, width=WIDTH):
     metrics = (
         f"Cost: {format_cost(s['total_cost'])}  {VT}  "
         f"Time: {format_time(s['total_time'])}  {VT}  "
-        f"Segments: {s['num_hops']}"
+        f"Hops: {s['num_hops']}"
     )
     print(framed_line(metrics, width))
     print(framed_line(f"Ranked by: {pref_labels.get(preference, '')}", width))

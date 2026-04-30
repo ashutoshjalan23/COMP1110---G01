@@ -89,7 +89,7 @@ def save_journey_results(journeys, preference, origin, dest, filepath=None):
             f.write(f"Route #{i}\n")
             f.write(f"  Cost:     HK${s['total_cost']:.1f}\n")
             f.write(f"  Time:     {s['total_time']:.0f} min\n")
-            f.write(f"  Segments: {s['num_hops']}\n")
+            f.write(f"  Hops:     {s['num_hops']}\n")
             f.write(f"  Path:     {' -> '.join(s['stops'])}\n")
             f.write(f"  Modes:    {' -> '.join(s['modes'])}\n")
             f.write(f"{'-' * 55}\n")

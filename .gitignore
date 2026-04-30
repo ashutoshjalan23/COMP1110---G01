@@ -1,3 +1,5 @@
 __pycache__/
-spline-ui/.next-dev*.log
+frontend/.next-dev*.log
+backend_api*.log
 .backend*.log
+test-cases.zip

@@ -52,3 +52,11 @@ npm run dev
 ```
 
 The frontend expects the backend at `http://127.0.0.1:8000` by default. You can override that with `NEXT_PUBLIC_BACKEND_URL`.
+
+## Run tests
+
+The repo now includes a small `unittest` suite for the graph logic, journey ranking, file I/O, and Python backend responses.
+
+```bash
+python -m unittest discover -s tests -v
+```

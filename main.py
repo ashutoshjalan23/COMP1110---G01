@@ -145,7 +145,7 @@ def get_preference():
     print()
     print(menu_option("1", f"Cheapest   {DIM}(rank by total cost){RESET}"))
     print(menu_option("2", f"Fastest    {DIM}(rank by total time){RESET}"))
-    print(menu_option("3", f"Fewest     {DIM}(rank by number of segments){RESET}"))
+    print(menu_option("3", f"Fewest     {DIM}(rank by number of hops){RESET}"))
     print()
     print(info(f"You can combine multiple preferences!"))
     print(info(f"Examples: {BOLD}1{RESET}  or  {BOLD}1,2{RESET}  or  {BOLD}1,2,3{RESET}"))
@@ -232,7 +232,7 @@ def plan_journey():
     explanations = {
         "cheapest": "Total cost (sum of all segment fares) in HKD.",
         "fastest":  "Total time (sum of all segment durations) in minutes.",
-        "fewest":   "Number of segments (transfers + 1).",
+        "fewest":   "Number of hops, where a continuous MTR chain counts as one hop.",
     }
 
     if len(preferences) == 1:
@@ -442,7 +442,7 @@ def show_about():
     print(framed_line(f"{BOLD}Preference Modes:{RESET}"))
     print(framed_line(f"  {GREEN}Cheapest{RESET}  - Rank by total fare (HKD)"))
     print(framed_line(f"  {GREEN}Fastest{RESET}   - Rank by total travel time"))
-    print(framed_line(f"  {GREEN}Fewest{RESET}    - Rank by number of segments"))
+    print(framed_line(f"  {GREEN}Fewest{RESET}    - Rank by number of hops"))
     print(framed_line(""))
     print(hline_mid())
     print(framed_line(f"{BOLD}Transport Modes:{RESET}"))

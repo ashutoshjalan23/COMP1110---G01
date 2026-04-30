@@ -48,7 +48,7 @@ class Journey:
         self.total_cost    = sum(s.cost     for s in segments)
         self.total_time    = sum(s.duration for s in segments)  # static baseline
         self.adjusted_time = self.total_time   # updated by _apply_realtime
-        self.num_hops      = len(segments)
+        self.num_hops      = _count_hops(segments)
 
     # Expose adjusted_time as "fastest" metric
     @property
@@ -68,7 +68,29 @@ class Journey:
             "num_hops":      self.num_hops,
             "stops":         stops,
             "modes":         [s.mode for s in self.segments],
+            "segments":      self.segments,
         }
+
+
+def _count_hops(segments) -> int:
+    """
+    Count effective hops for ranking and display.
+
+    A continuous MTR chain counts as one hop, so consecutive MTR -> MTR
+    segments do not increase the hop count.
+    """
+    if not segments:
+        return 0
+
+    hops = 1
+    previous_mode = segments[0].mode
+
+    for segment in segments[1:]:
+        if not (previous_mode == "MTR" and segment.mode == "MTR"):
+            hops += 1
+        previous_mode = segment.mode
+
+    return hops
 
 
 # ── Real-time helpers ─────────────────────────────────────────────────────────
@@ -184,7 +206,10 @@ def build_journeys(paths: list, network, realtime: bool = False) -> list:
 
 
 def rank_journeys(journeys: list, preference: str) -> list:
-    """Sort journeys by a single preference (cheapest / fastest / fewest)."""
+    """Sort journeys by a single preference (cheapest / fastest / fewest).
+
+    Returns Journey objects sorted by the chosen preference.
+    """
     key_fn = {
         "cheapest": lambda j: j.total_cost,
         "fastest":  lambda j: j.adjusted_time,
@@ -200,7 +225,7 @@ def rank_journeys_multi(journeys: list, preferences: list):
     Returns
     -------
     (ranked_journeys, scores, breakdowns)
-      - ranked_journeys : sorted best-first
+      - ranked_journeys : sorted best-first, as Journey objects
       - scores          : composite score per journey (lower = better)
       - breakdowns      : per-journey dict with raw / normalised / weighted values
     """
@@ -236,4 +261,6 @@ def rank_journeys_multi(journeys: list, preferences: list):
         })
 
     paired = sorted(zip(scores, journeys, bds), key=lambda x: x[0])
-    return [x[1] for x in paired], [x[0] for x in paired], [x[2] for x in paired]
+    return ([x[1] for x in paired], 
+            [x[0] for x in paired], 
+            [x[2] for x in paired])
