@@ -210,11 +210,15 @@ def rank_journeys(journeys: list, preference: str) -> list:
 
     Returns Journey objects sorted by the chosen preference.
     """
+    if preference not in PREFERENCE_KEYS:
+        valid = ", ".join(PREFERENCE_KEYS)
+        raise ValueError(f"Unknown preference mode '{preference}'. Use one of: {valid}.")
+
     key_fn = {
         "cheapest": lambda j: j.total_cost,
         "fastest":  lambda j: j.adjusted_time,
         "fewest":   lambda j: j.num_hops,
-    }.get(preference, lambda j: j.total_cost)
+    }[preference]
     return sorted(journeys, key=key_fn)
 
 
@@ -229,6 +233,15 @@ def rank_journeys_multi(journeys: list, preferences: list):
       - scores          : composite score per journey (lower = better)
       - breakdowns      : per-journey dict with raw / normalised / weighted values
     """
+    if not preferences:
+        raise ValueError("At least one preference mode is required.")
+
+    invalid = [p for p in preferences if p not in PREFERENCE_KEYS]
+    if invalid:
+        valid = ", ".join(PREFERENCE_KEYS)
+        bad = ", ".join(invalid)
+        raise ValueError(f"Unknown preference mode(s): {bad}. Use one of: {valid}.")
+
     if not journeys:
         return [], [], []
 

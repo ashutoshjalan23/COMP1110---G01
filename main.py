@@ -1,4 +1,4 @@
-﻿"""
+"""
 main.py - Smart Public Transport Advisor
 COMP1110 | Semester 2, 2025-2026 | Group G-01
 
@@ -25,14 +25,14 @@ from ui import (
     mode_label, hline_mid,
 )
 
-# â”€â”€ Real-time geocoding (from check.py) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ---- Real-time geocoding (from check.py) ----
 try:
     from check import geocode as _rt_geocode, HK_LOCATIONS, haversine as _haversine
     _RT_GEO = True
 except ImportError:
     _RT_GEO = False
 
-# â”€â”€ Global state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ---- Global state ----
 network = None
 
 
@@ -51,7 +51,7 @@ def load_data():
 
 
 
-# â”€â”€ Menu Screens â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ---- Menu Screens ----
 
 def show_main_menu():
     """Display the main menu and return user choice."""
@@ -108,7 +108,7 @@ def get_stop_input(prompt_text):
             print(info(f"Matched: {matches[0].name}"))
             return matches[0].id
 
-        # 4. Real-time geocoding â†’ nearest network stop
+        # 4. Real-time geocoding -> nearest network stop
         if _RT_GEO:
             coords = _rt_geocode(raw)
             if coords:
@@ -121,7 +121,7 @@ def get_stop_input(prompt_text):
                             min_d, nearest = d, stop
                 if nearest:
                     print(info(
-                        f"Geocoded '{raw}' â†’ nearest stop: "
+                        f"Geocoded '{raw}' -> nearest stop: "
                         f"{BOLD}{nearest.name}{RESET} ({min_d:.0f} m away)"
                     ))
                     confirm = input(
@@ -167,7 +167,7 @@ def get_preference():
         print(error("Invalid choice. Enter 1, 2, 3 or combine them (e.g. 1,2)."))
 
 
-# â”€â”€ Core Features â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ---- Core Features ----
 
 def plan_journey():
     """Main journey planning flow."""
@@ -207,7 +207,7 @@ def plan_journey():
     print(success(f"Preference(s): {pref_label}"))
     print()
 
-    # â”€â”€ Run DFS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # Run DFS
     print(section_header("DFS ROUTE SEARCH"))
     print()
     print(info("Running Depth-First Search..."))
@@ -221,7 +221,7 @@ def plan_journey():
         input(f"\n  {DIM}Press Enter to continue...{RESET}")
         return
 
-    # â”€â”€ Build, score, rank â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    # Build, score, rank
     # Use real-time APIs when "fastest" is among the selected preferences
     use_realtime = "fastest" in preferences
     if use_realtime:
@@ -236,7 +236,7 @@ def plan_journey():
     }
 
     if len(preferences) == 1:
-        # â”€â”€ Single preference mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        # Single preference mode
         preference = preferences[0]
         ranked = rank_journeys(journeys, preference)
 
@@ -258,7 +258,7 @@ def plan_journey():
             print(warning(f"Could not save results: {e}"))
 
     else:
-        # â”€â”€ Multi-preference combined mode â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        # Multi-preference combined mode
         ranked, scores, breakdowns = rank_journeys_multi(journeys, preferences)
 
         print(section_header("SCORING EXPLANATION (COMBINED)"))
@@ -463,7 +463,7 @@ def show_about():
     input(f"  {DIM}Press Enter to continue...{RESET}")
 
 
-# â”€â”€ Main Loop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+# ---- Main Loop ----
 
 def main():
     """Application entry point."""

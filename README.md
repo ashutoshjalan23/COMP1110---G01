@@ -1,62 +1,113 @@
 # Smart Public Transport Advisor
 
-This project combines a Python route-planning engine with a Next.js frontend to explore Hong Kong public transport journeys on a map. The sample network is loaded from CSV files in `data/`, and the website now gets stops, segments, route planning, and live ETA information directly from the Python backend instead of duplicating that logic in TypeScript.
+Topic B project for COMP1110, Semester 2 2025-2026.
 
-## What it does
+This project models Hong Kong public transport as a graph of stops and directed travel segments. It loads a hand-crafted CSV network, accepts an origin, destination, and preference mode, generates candidate journeys with depth-limited DFS, then ranks them by cheapest, fastest, or fewest hops.
 
-- loads a sample Hong Kong transport network from CSV
-- finds candidate routes with depth-first search
-- ranks journeys by cheapest, fastest, or fewest hops
-- applies live MTR and KMB waits plus TDAS traffic adjustments in the Python backend
-- visualizes stops, links, and selected journeys in the Next.js map UI
+## Language And Environment
 
-## Project layout
+- Main program: Python 3.12
+- Python dependency for optional live ETA helpers: `requests`
+- Optional visual frontend: Next.js in `frontend/`
+- Persistent data files: CSV files in `data/`
 
-Python backend and CLI (root):
-- `backend_api.py` serves the website data on `http://127.0.0.1:8000`
-- `main.py` runs the terminal prototype
-- `network.py` contains the graph model and DFS path search
-- `journey.py` contains scoring, ranking, and real-time adjustments
-- `file_io.py` loads and saves CSV data
-- `check.py` contains live transport API helpers
-- `ui.py` contains terminal UI helpers
-
-Website frontend (`spline-ui/`):
-- `spline-ui/app/page.tsx` loads the network from the Python backend
-- `spline-ui/app/components/` contains the planner, ETA panel, and map
-- `spline-ui/app/lib/` contains shared frontend types, backend URL helpers, and UI constants
-
-Data:
-- `data/stops.csv` stores stop IDs, names, coordinates, and available lines
-- `data/segments.csv` stores directed links, modes, durations, and fares
-
-## Run locally
-
-1. Start the Python backend from the repo root:
+Install the Python dependency:
 
 ```bash
-python backend_api.py
+python -m pip install -r requirements.txt
 ```
 
-2. Start the terminal prototype if you want the CLI:
+## Project Layout
+
+- `main.py`: terminal menu for journey planning, stop listing, network summary, and case studies
+- `network.py`: `Stop`, `Segment`, and `Network` graph classes plus DFS path search
+- `journey.py`: journey totals, hop counting, single and combined preference ranking, optional live-time adjustment helpers
+- `file_io.py`: CSV loading/saving with validation for missing, empty, malformed, and inconsistent files
+- `ui.py`: terminal display helpers
+- `check.py`: optional live transport API helper functions
+- `backend_api.py`: small HTTP API used by the optional frontend
+- `data/stops.csv`: stop IDs, names, coordinates, and available transport lines
+- `data/segments.csv`: directed connections with mode, duration, and cost
+- `tests/`: unit and stress tests for graph, ranking, file I/O, backend, and edge cases
+- `frontend/`: optional Next.js map interface
+
+## CSV Format
+
+`data/stops.csv`
+
+```csv
+id,name,latitude,longitude,lines
+S01,Central,22.2819,114.1584,MTR;Ferry;Tram;Bus
+```
+
+`data/segments.csv`
+
+```csv
+seg_id,from_stop,to_stop,mode,duration,cost
+SEG01,S01,S02,MTR,2,5.2
+```
+
+Each segment is directed and must reference existing stop IDs. Duration is in minutes and cost is in HKD. Empty files, missing columns, duplicate IDs, non-numeric durations/costs, negative values, and unknown stop references are reported as clear data-format errors.
+
+## Run The Terminal Program
 
 ```bash
 python main.py
 ```
 
-3. Start the website in `spline-ui/`:
+Menu options include:
+
+- plan a journey
+- view all stops
+- view a text network map
+- run four built-in case studies
+- show help/about
+
+## Run The Backend
 
 ```bash
+python backend_api.py
+```
+
+The backend runs at `http://127.0.0.1:8000` by default and exposes:
+
+- `GET /health`
+- `GET /network`
+- `GET /eta?stopId=S01`
+- `POST /plan`
+
+## Run The Optional Frontend
+
+```bash
+cd frontend
 npm install
 npm run dev
 ```
 
-The frontend expects the backend at `http://127.0.0.1:8000` by default. You can override that with `NEXT_PUBLIC_BACKEND_URL`.
+Open [http://localhost:3000](http://localhost:3000). The frontend uses `NEXT_PUBLIC_BACKEND_URL` if set, otherwise `http://127.0.0.1:8000`.
 
-## Run tests
-
-The repo now includes a small `unittest` suite for the graph logic, journey ranking, file I/O, and Python backend responses.
+## Run Tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
+
+Optional frontend checks:
+
+```bash
+cd frontend
+npm run lint
+npm run build
+```
+
+## Topic B Coverage
+
+- Network data model: 15 stops and 54 directed segments in CSV, exceeding the minimum of 10 stops and 20 segments.
+- Text menu: implemented in `main.py`.
+- Input validation: unknown stops, same origin/destination, invalid menu choices, invalid preferences, malformed CSV data, empty files, and missing files are handled.
+- File I/O: network CSV loading and journey result saving are implemented in `file_io.py`.
+- Candidate generation: DFS with a configurable depth limit in `network.py`.
+- Scoring/ranking: total cost, total duration, and hop count in `journey.py`.
+- Case studies: four built-in scenarios are available through the terminal menu and documented in `CASE_STUDIES.md`.
+- Test data: unit tests plus an all-origin/destination stress test are in `tests/`.
+

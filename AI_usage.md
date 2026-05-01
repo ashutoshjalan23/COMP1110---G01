@@ -9,20 +9,21 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 
 | Date | Feature/File | Task | AI Tool | Description |
 |------|-------------|------|---------|-------------|
-| | | | | |
+| 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" |
 
 ---
 
 ## Detailed Entries
 
 ### Entry 1
-- **Date**: 
-- **Feature/File**: 
-- **AI Tool Used**: 
-- **Task**: 
-- **Description**: 
-- **Code Generated**: Yes / No / Partial
-- **Code Modified After**: Yes / No
+- **Date**: 2026-05-01
+- **Feature/File**: `file_io.py`, `journey.py`, `tests/test_guideline_edge_cases.py`, `README.md`, `CASE_STUDIES.md`, `GUIDELINE_COVERAGE.md`, `frontend/app/components/MapClient.tsx`
+- **AI Tool Used**: OpenAI Codex (GPT-5)
+- **Task**: Check the COMP1110 Topic B project against the full project guidelines, stress-test edge cases, and fix identified gaps.
+- **Prompt Used**: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code"
+- **Description**: The AI reviewed the project guidelines and repository, added CSV and preference validation, added stress tests, fixed a frontend lint typing issue, updated project documentation, pulled the latest remote branch, and reran verification.
+- **Code Generated**: Partial
+- **Code Modified After**: Yes
 
 ---
 

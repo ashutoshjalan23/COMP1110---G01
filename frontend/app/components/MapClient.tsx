@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { Map as LeafletMap } from "leaflet";
+import type { Map as LeafletMap, Polyline } from "leaflet";
 import { MODE_COLORS } from "@/app/lib/constants";
 import type { Journey, Segment, Stop } from "@/app/lib/types";
 
@@ -24,7 +24,7 @@ export default function MapClient({
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<LeafletMap | null>(null);
-  const polylinesRef = useRef<any[]>([]);
+  const polylinesRef = useRef<Polyline[]>([]);
   const onStopClickRef = useRef(onStopClick);
   onStopClickRef.current = onStopClick;
 

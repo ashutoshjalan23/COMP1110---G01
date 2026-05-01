@@ -10,7 +10,7 @@ This Next.js app is the visual layer for the Smart Public Transport Advisor. It 
 python backend_api.py
 ```
 
-2. In this `spline-ui/` folder, install dependencies and start the frontend:
+2. In this `frontend/` folder, install dependencies and start the frontend:
 
 ```bash
 npm install
