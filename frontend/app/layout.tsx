@@ -6,7 +6,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "HK Transit Map — Live Journey Planner",
+  title: "Open Transit - Live Journey Planner",
   description: "Real-time Hong Kong public transport planner with live ETAs",
 };
 

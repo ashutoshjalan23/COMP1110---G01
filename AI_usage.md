@@ -10,6 +10,7 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 | Date | Feature/File | Task | AI Tool | Description | Name |
 |------|-------------|------|---------|-------------|---------|
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Aikagra Gupta |
+| 2026-05-01 | README, frontend naming, Vercel deployment configuration | Rename old `spline-ui` references to `open-transit`, align README with the actual repo, and deploy the frontend | OpenAI Codex (GPT-5) | Prompt used: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project" | Aikagra Gupta |
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | Claude Code (Opus 4.6) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Ashutosh Jalan |
 | 2026-04-17 | frontend | UI implementation  | Claude Code (Opus 4.6) | Prompt used: "Create UI using next.js framework for our python based Smart Transport Public Advisor. Ensure that it connects with python backend properly and uses live ETA as well. Create a proper map based layout for stops/segments we have in our data " | Ashutosh Jalan |
 
@@ -19,11 +20,45 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 
 ### Entry 1
 - **Date**: 2026-05-01
+- **Name**: Aikagra Gupta
 - **Feature/File**: `file_io.py`, `journey.py`, `tests/test_guideline_edge_cases.py`, `README.md`, `CASE_STUDIES.md`, `GUIDELINE_COVERAGE.md`, `frontend/app/components/MapClient.tsx`
 - **AI Tool Used**: OpenAI Codex (GPT-5)
 - **Task**: Check the COMP1110 Topic B project against the full project guidelines, stress-test edge cases, and fix identified gaps.
 - **Prompt Used**: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code"
 - **Description**: The AI reviewed the project guidelines and repository, added CSV and preference validation, added stress tests, fixed a frontend lint typing issue, updated project documentation, pulled the latest remote branch, and reran verification.
+- **Code Generated**: Partial
+- **Code Modified After**: Yes
+
+### Entry 2
+- **Date**: 2026-05-01
+- **Name**: Aikagra Gupta
+- **Feature/File**: `README.md`, `AI_usage.md`, `.claude/settings.local.json`, `frontend/package.json`, `frontend/package-lock.json`, `frontend/README.md`, `frontend/app/layout.tsx`, `frontend/app/page.tsx`, `frontend/app/components/JourneyPanel.tsx`
+- **AI Tool Used**: OpenAI Codex (GPT-5)
+- **Task**: Make the AI usage entries more detailed, remove stale project names, rename the frontend/Vercel identity to `open-transit`, and deploy the frontend.
+- **Prompt Used**: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project"
+- **Description**: The AI audited the README against the current repository layout, replaced stale `spline-ui` branding with `open-transit`, updated frontend display names, relinked the Vercel project, corrected the Vercel framework preset to Next.js, and prepared the production deployment link.
+- **Code Generated**: Partial
+- **Code Modified After**: Yes
+
+### Entry 3
+- **Date**: 2026-05-01
+- **Name**: Ashutosh Jalan
+- **Feature/File**: guideline audit, edge-case hardening, tests, and documentation
+- **AI Tool Used**: Claude Code (Opus 4.6)
+- **Task**: Review whether the COMP1110 project follows the full guidelines, run stress tests, and identify or fix uncovered edge cases.
+- **Prompt Used**: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code"
+- **Description**: Claude Code was used to support the guideline-compliance workflow: checking the project against the COMP1110 Topic B requirements, reviewing edge cases, and improving documentation/testing coverage where needed.
+- **Code Generated**: Partial
+- **Code Modified After**: Yes
+
+### Entry 4
+- **Date**: 2026-04-17
+- **Name**: Ashutosh Jalan
+- **Feature/File**: `frontend/`
+- **AI Tool Used**: Claude Code (Opus 4.6)
+- **Task**: Build the Next.js visual frontend for the Python Smart Public Transport Advisor and connect it to the Python backend.
+- **Prompt Used**: "Create UI using next.js framework for our python based Smart Transport Public Advisor. Ensure that it connects with python backend properly and uses live ETA as well. Create a proper map based layout for stops/segments we have in our data "
+- **Description**: Claude Code helped create the map-based frontend, including route-planning controls, backend API integration, live ETA display, and visualization of the CSV stop/segment network.
 - **Code Generated**: Partial
 - **Code Modified After**: Yes
 

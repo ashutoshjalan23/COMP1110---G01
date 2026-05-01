@@ -130,7 +130,7 @@ export default function JourneyPanel({
         <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 flex items-center justify-center text-sm font-bold shadow-lg shadow-cyan-500/30">
           T
         </div>
-        <span className="font-bold text-white text-sm tracking-wide">HK Transit Planner</span>
+        <span className="font-bold text-white text-sm tracking-wide">Open Transit Planner</span>
         <div className="ml-auto flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[10px] text-emerald-400 font-medium">LIVE</span>

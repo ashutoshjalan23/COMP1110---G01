@@ -82,8 +82,8 @@ export default function Home() {
             T
           </div>
           <div>
-            <div className="text-sm font-bold text-shimmer leading-none">HK Transit</div>
-            <div className="text-[10px] text-white/30 leading-none">Live Journey Planner</div>
+            <div className="text-sm font-bold text-shimmer leading-none">Open Transit</div>
+            <div className="text-[10px] text-white/30 leading-none">Live HK Journey Planner</div>
           </div>
         </div>
 

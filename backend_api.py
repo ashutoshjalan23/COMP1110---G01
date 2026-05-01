@@ -1,5 +1,5 @@
 """
-Lightweight Python backend for the HK Transit website.
+Lightweight Python backend for the Open Transit website.
 
 Run:
     python backend_api.py
@@ -397,7 +397,7 @@ def first_query_value(query, *names):
 
 def serve():
     server = ThreadingHTTPServer((HOST, PORT), TransitRequestHandler)
-    print(f"HK Transit backend listening on http://{HOST}:{PORT}")
+    print(f"Open Transit backend listening on http://{HOST}:{PORT}")
     server.serve_forever()
 
 
