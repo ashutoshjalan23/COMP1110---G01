@@ -1,6 +1,11 @@
 import os
+import sys
 import tempfile
 import unittest
+from pathlib import Path
+
+# Add parent directory to path to allow imports from root
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from file_io import load_network, save_journey_results
 from journey import build_journeys, rank_journeys
@@ -37,4 +42,4 @@ class FileIoTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
