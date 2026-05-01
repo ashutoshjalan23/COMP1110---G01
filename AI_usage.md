@@ -7,9 +7,10 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 
 ## Usage Summary
 
-| Date | Feature/File | Task | AI Tool | Description |
-|------|-------------|------|---------|-------------|
-| 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" |
+| Date | Feature/File | Task | AI Tool | Description | Name |
+|------|-------------|------|---------|-------------|---------|
+| 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Aikagra Gupta |
+| 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | Claude Code (Opus 4.6) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Ashutosh Jalan |
 
 ---
 
