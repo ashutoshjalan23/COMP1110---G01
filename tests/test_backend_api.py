@@ -1,10 +1,15 @@
 import json
+import sys
 import threading
 import unittest
 import urllib.error
 import urllib.request
 from http.server import ThreadingHTTPServer
+from pathlib import Path
 from unittest.mock import patch
+
+# Add parent directory to path to allow imports from root
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import backend_api
 
@@ -90,4 +95,4 @@ class BackendHttpTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(verbosity=2)
