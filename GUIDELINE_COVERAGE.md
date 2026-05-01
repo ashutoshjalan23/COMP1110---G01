@@ -22,6 +22,17 @@ Topic B: Smart Public Transport Advisor.
 | Sample test cases and edge cases | Covered | `tests/`, including all-origin/destination stress test |
 | README with language, setup, file purpose, run instructions, CSV format | Covered | `README.md` |
 
+## Unique Feature: Live Transport Data
+
+The guideline only requires a small hand-crafted network and static route ranking, but this project adds a useful real-world extension: live transport data is folded into journey planning while keeping the static CSV model as the reproducible baseline.
+
+- Live MTR and KMB ETA helpers are implemented in `check.py`.
+- Fastest-route scoring can include live wait times and TDAS traffic multipliers through `journey.py` and `backend_api.py`.
+- The web frontend exposes live arrivals in `frontend/app/components/EtaPanel.tsx`.
+- If external APIs are unavailable, the system falls back to static timing assumptions, so the core guideline-required journey planner still works.
+
+This strengthens the Topic B emphasis on transport trade-offs because the system can compare not only static cost, duration, and hops, but also current waiting time and traffic conditions.
+
 ## Report And Submission Items To Verify Outside Code
 
 These are required by the project guidelines but cannot be fully verified from the code repository alone:
