@@ -11,6 +11,7 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 |------|-------------|------|---------|-------------|---------|
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Aikagra Gupta |
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | Claude Code (Opus 4.6) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Ashutosh Jalan |
+| 2026-04-17 | frontend | UI implementation  | Claude Code (Opus 4.6) | Prompt used: "Create UI using next.js framework for our python based Smart Transport Public Advisor. Ensure that it connects with python backend properly and uses live ETA as well. Create a proper map based layout for stops/segments we have in our data " | Ashutosh Jalan |
 
 ---
 
