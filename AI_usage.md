@@ -1,4 +1,4 @@
-# AI Tool Usage Log
+﻿# AI Tool Usage Log
 
 ## Overview
 This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this project for transparency and academic integrity.
@@ -13,7 +13,8 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 | 2026-05-01 | README, frontend naming, Vercel deployment configuration | Rename old `spline-ui` references to `open-transit`, align README with the actual repo, and deploy the frontend | OpenAI Codex (GPT-5) | Prompt used: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project" | Aikagra Gupta |
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | Claude Code (Opus 4.6) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Ashutosh Jalan |
 | 2026-04-17 | frontend | UI implementation  | Claude Code (Opus 4.6) | Prompt used: "Create UI using next.js framework for our python based Smart Transport Public Advisor. Ensure that it connects with python backend properly and uses live ETA as well. Create a proper map based layout for stops/segments we have in our data " | Ashutosh Jalan |
-
+| 2026-05-01 | 	ests/test_*.py | Updated test files from tests.zip with proper sys.path imports and verbosity | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `access the tests zip folder in HKU folder - sem 2 - comp 1110 - then do changes` | Shikhar Mathur |
+| 2026-05-01 | 	ests/test_*.py | Added descriptive input/output logging to all test files showing inputs passed and outputs received | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `in the test files currently the output just shows that the function is working, make it more descriptive to show what inputs were passed and whats outputs are being received` | Shikhar Mathur |
 ---
 
 ## Detailed Entries
@@ -62,6 +63,27 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 - **Code Generated**: Partial
 - **Code Modified After**: Yes
 
+### Entry 5
+- **Date**: 2026-05-01
+- **Name**: Shikhar Mathur
+- **Feature/File**: `tests/test_backend_api.py`, `tests/test_file_io.py`, `tests/test_journey.py`, `tests/test_network.py`
+- **AI Tool Used**: Gemini (Antigravity - Claude Opus 4.6 Thinking)
+- **Task**: Extract test files from the provided tests.zip and update the repository test suite with proper path imports so tests run correctly from the tests/ subdirectory.
+- **Prompt Used**: `access the tests zip folder in HKU folder - sem 2 - comp 1110 - then do changes`
+- **Description**: The AI extracted tests.zip, compared its contents with the existing test files in the repo, identified the differences (missing sys.path.insert for subdirectory imports and missing verbosity=2), and copied the updated test files into the repository's tests/ folder.
+- **Code Generated**: Partial
+- **Code Modified After**: No
+
+### Entry 6
+- **Date**: 2026-05-01
+- **Name**: Shikhar Mathur
+- **Feature/File**: `tests/test_backend_api.py`, `tests/test_file_io.py`, `tests/test_journey.py`, `tests/test_network.py`
+- **AI Tool Used**: Gemini (Antigravity - Claude Opus 4.6 Thinking)
+- **Task**: Enhance all test files with descriptive print statements that show what inputs are being passed to each function and what outputs are being received, making test output more informative.
+- **Prompt Used**: `in the test files currently the output just shows that the function is working, make it more descriptive to show what inputs were passed and whats outputs are being received`
+- **Description**: The AI read all four test files and the source modules (network.py, journey.py, file_io.py, backend_api.py) to understand the function signatures. It then added detailed print statements to every test method showing: the function being called, the input parameters, the actual output values, the expected values, and PASS/FAIL status. All 16 tests were verified passing with the new descriptive output.
+- **Code Generated**: Yes
+- **Code Modified After**: Yes (fixed one key name from 'seg_id' to 'segId' to match the serialised API response format)
 ---
 
 ## Guidelines
