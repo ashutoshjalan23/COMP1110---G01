@@ -1,1128 +1,169 @@
 Smart Public Transport Advisor - Journey Results
 =======================================================
-Origin:      HKU
-Destination: Wan Chai
-Preference:  CHEAPEST + FEWEST
-Routes found: 160
+Origin:      Jordan
+Destination: Tsim Sha Tsui
+Preference:  fastest
+Routes found: 23
 =======================================================
 
 Route #1
-  Cost:     HK$9.0
-  Time:     14 min
-  Segments: 2
-  Path:     HKU -> Central -> Wan Chai
-  Modes:    MTR -> Tram
+  Cost:     HK$4.9
+  Time:     2 min
+  Hops:     1
+  Path:     Jordan -> Tsim Sha Tsui
+  Modes:    MTR
 -------------------------------------------------------
 Route #2
-  Cost:     HK$11.2
-  Time:     28 min
-  Segments: 3
-  Path:     HKU -> Kennedy Town -> Central -> Wan Chai
-  Modes:    MTR -> Tram -> Tram
+  Cost:     HK$10.3
+  Time:     20 min
+  Hops:     2
+  Path:     Jordan -> Mong Kok -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus
 -------------------------------------------------------
 Route #3
-  Cost:     HK$16.4
-  Time:     8 min
-  Segments: 3
-  Path:     HKU -> Central -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR
+  Cost:     HK$10.7
+  Time:     18 min
+  Hops:     2
+  Path:     Jordan -> Mong Kok -> Tsim Sha Tsui
+  Modes:    MTR -> Bus
 -------------------------------------------------------
 Route #4
-  Cost:     HK$18.6
-  Time:     22 min
-  Segments: 4
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR
+  Cost:     HK$46.1
+  Time:     31 min
+  Hops:     1
+  Path:     Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> MTR
 -------------------------------------------------------
 Route #5
-  Cost:     HK$19.9
-  Time:     67 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Ferry -> Ferry -> Tram -> Tram
+  Cost:     HK$45.7
+  Time:     33 min
+  Hops:     2
+  Path:     Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> MTR -> MTR -> MTR -> MTR -> MTR
 -------------------------------------------------------
 Route #6
-  Cost:     HK$22.1
-  Time:     62 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Ferry -> Ferry -> Tram -> MTR
+  Cost:     HK$20.4
+  Time:     58 min
+  Hops:     3
+  Path:     Jordan -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> Minibus
 -------------------------------------------------------
 Route #7
-  Cost:     HK$22.7
-  Time:     59 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Ferry -> Ferry -> MTR -> Tram
+  Cost:     HK$41.1
+  Time:     54 min
+  Hops:     2
+  Path:     Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus
 -------------------------------------------------------
 Route #8
-  Cost:     HK$22.7
-  Time:     72 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Bus -> Ferry -> Tram -> Tram
+  Cost:     HK$38.3
+  Time:     49 min
+  Hops:     2
+  Path:     Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Ferry
 -------------------------------------------------------
 Route #9
-  Cost:     HK$24.9
-  Time:     54 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Ferry -> Ferry -> MTR -> MTR
+  Cost:     HK$37.9
+  Time:     51 min
+  Hops:     3
+  Path:     Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> MTR -> MTR -> MTR -> MTR -> Ferry
 -------------------------------------------------------
 Route #10
-  Cost:     HK$24.9
-  Time:     67 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Bus -> Ferry -> Tram -> MTR
+  Cost:     HK$20.0
+  Time:     60 min
+  Hops:     3
+  Path:     Jordan -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> Minibus
 -------------------------------------------------------
 Route #11
-  Cost:     HK$25.5
-  Time:     64 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Bus -> Ferry -> MTR -> Tram
+  Cost:     HK$55.1
+  Time:     59 min
+  Hops:     3
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> MTR -> MTR -> MTR -> MTR
 -------------------------------------------------------
 Route #12
-  Cost:     HK$27.7
-  Time:     49 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> Ferry -> Tram -> Tram
+  Cost:     HK$40.7
+  Time:     56 min
+  Hops:     3
+  Path:     Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> MTR -> MTR -> MTR -> MTR -> Bus
 -------------------------------------------------------
 Route #13
-  Cost:     HK$27.7
-  Time:     59 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Bus -> Ferry -> MTR -> MTR
+  Cost:     HK$54.7
+  Time:     61 min
+  Hops:     3
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
 -------------------------------------------------------
 Route #14
-  Cost:     HK$29.9
-  Time:     44 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> Ferry -> Tram -> MTR
+  Cost:     HK$51.1
+  Time:     64 min
+  Hops:     4
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> Minibus -> MTR -> MTR -> MTR
 -------------------------------------------------------
 Route #15
-  Cost:     HK$22.1
-  Time:     81 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Ferry -> Tram -> Tram
+  Cost:     HK$50.7
+  Time:     66 min
+  Hops:     4
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> Minibus -> MTR -> MTR -> MTR
 -------------------------------------------------------
 Route #16
-  Cost:     HK$30.5
-  Time:     41 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> Ferry -> MTR -> Tram
+  Cost:     HK$50.1
+  Time:     82 min
+  Hops:     4
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> MTR -> MTR -> MTR -> Bus
 -------------------------------------------------------
 Route #17
-  Cost:     HK$24.3
-  Time:     76 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Ferry -> Tram -> MTR
+  Cost:     HK$47.3
+  Time:     77 min
+  Hops:     4
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> MTR -> MTR -> MTR -> Ferry
 -------------------------------------------------------
 Route #18
-  Cost:     HK$32.7
-  Time:     36 min
-  Segments: 5
-  Path:     HKU -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> Ferry -> MTR -> MTR
+  Cost:     HK$46.1
+  Time:     87 min
+  Hops:     5
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> Minibus -> MTR -> MTR -> Bus
 -------------------------------------------------------
 Route #19
-  Cost:     HK$24.9
-  Time:     73 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Ferry -> MTR -> Tram
+  Cost:     HK$46.9
+  Time:     79 min
+  Hops:     4
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> MTR -> MTR -> MTR -> Ferry
 -------------------------------------------------------
 Route #20
-  Cost:     HK$24.9
-  Time:     86 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Ferry -> Tram -> Tram
+  Cost:     HK$43.3
+  Time:     82 min
+  Hops:     5
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    MTR -> Bus -> Minibus -> MTR -> MTR -> Ferry
 -------------------------------------------------------
 Route #21
-  Cost:     HK$27.1
-  Time:     68 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Ferry -> MTR -> MTR
+  Cost:     HK$49.7
+  Time:     84 min
+  Hops:     4
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> MTR -> MTR -> MTR -> Bus
 -------------------------------------------------------
 Route #22
-  Cost:     HK$27.1
-  Time:     81 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Ferry -> Tram -> MTR
+  Cost:     HK$42.9
+  Time:     84 min
+  Hops:     5
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> Minibus -> MTR -> MTR -> Ferry
 -------------------------------------------------------
 Route #23
-  Cost:     HK$27.7
-  Time:     78 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #24
-  Cost:     HK$29.9
-  Time:     63 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #25
-  Cost:     HK$29.9
-  Time:     73 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #26
-  Cost:     HK$32.1
-  Time:     58 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #27
-  Cost:     HK$32.7
-  Time:     55 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #28
-  Cost:     HK$34.9
-  Time:     50 min
-  Segments: 6
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #29
-  Cost:     HK$45.2
-  Time:     65 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #30
-  Cost:     HK$48.0
-  Time:     70 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #31
-  Cost:     HK$50.2
-  Time:     98 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #32
-  Cost:     HK$53.0
-  Time:     47 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #33
-  Cost:     HK$53.0
-  Time:     103 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #34
-  Cost:     HK$54.2
-  Time:     93 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #35
-  Cost:     HK$47.4
-  Time:     79 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #36
-  Cost:     HK$57.0
-  Time:     98 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #37
-  Cost:     HK$48.8
-  Time:     57 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> MTR -> Minibus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #38
-  Cost:     HK$49.2
-  Time:     55 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #39
-  Cost:     HK$58.0
-  Time:     80 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #40
-  Cost:     HK$50.2
-  Time:     84 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #41
-  Cost:     HK$51.6
-  Time:     62 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> MTR -> Minibus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #42
-  Cost:     HK$52.0
-  Time:     60 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #43
-  Cost:     HK$52.4
-  Time:     112 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #44
-  Cost:     HK$62.0
-  Time:     75 min
-  Segments: 7
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #45
-  Cost:     HK$53.8
-  Time:     90 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> MTR -> Minibus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #46
-  Cost:     HK$54.2
-  Time:     88 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> MTR -> MTR -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #47
-  Cost:     HK$54.9
-  Time:     105 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #48
-  Cost:     HK$55.2
-  Time:     61 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #49
-  Cost:     HK$55.2
-  Time:     117 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #50
-  Cost:     HK$56.4
-  Time:     107 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #51
-  Cost:     HK$56.6
-  Time:     95 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> MTR -> Minibus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #52
-  Cost:     HK$56.6
-  Time:     39 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #53
-  Cost:     HK$57.0
-  Time:     37 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #54
-  Cost:     HK$57.0
-  Time:     93 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> MTR -> MTR -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #55
-  Cost:     HK$57.7
-  Time:     110 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #56
-  Cost:     HK$57.8
-  Time:     85 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #57
-  Cost:     HK$58.2
-  Time:     83 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> MTR -> MTR -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #58
-  Cost:     HK$59.2
-  Time:     112 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #59
-  Cost:     HK$51.0
-  Time:     71 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> MTR -> Minibus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #60
-  Cost:     HK$51.4
-  Time:     69 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #61
-  Cost:     HK$59.9
-  Time:     138 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> Minibus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #62
-  Cost:     HK$51.7
-  Time:     78 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #63
-  Cost:     HK$60.2
-  Time:     94 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #64
-  Cost:     HK$60.6
-  Time:     90 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #65
-  Cost:     HK$61.0
-  Time:     88 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> MTR -> MTR -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #66
-  Cost:     HK$61.6
-  Time:     72 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #67
-  Cost:     HK$62.0
-  Time:     70 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #68
-  Cost:     HK$53.8
-  Time:     76 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> MTR -> Minibus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #69
-  Cost:     HK$53.9
-  Time:     73 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #70
-  Cost:     HK$54.2
-  Time:     74 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #71
-  Cost:     HK$62.7
-  Time:     87 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #72
-  Cost:     HK$62.7
-  Time:     143 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> Minibus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #73
-  Cost:     HK$54.5
-  Time:     70 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #74
-  Cost:     HK$63.9
-  Time:     133 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Ferry -> Minibus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #75
-  Cost:     HK$64.2
+  Cost:     HK$45.7
   Time:     89 min
-  Segments: 8
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #76
-  Cost:     HK$56.0
-  Time:     104 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> MTR -> Minibus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #77
-  Cost:     HK$56.4
-  Time:     102 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> MTR -> MTR -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #78
-  Cost:     HK$56.7
-  Time:     65 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #79
-  Cost:     HK$56.7
-  Time:     111 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #80
-  Cost:     HK$57.1
-  Time:     119 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #81
-  Cost:     HK$65.6
-  Time:     67 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #82
-  Cost:     HK$66.0
-  Time:     65 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #83
-  Cost:     HK$66.7
-  Time:     138 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Bus -> Minibus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #84
-  Cost:     HK$58.8
-  Time:     53 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #85
-  Cost:     HK$58.8
-  Time:     109 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> MTR -> Minibus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #86
-  Cost:     HK$58.9
-  Time:     106 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #87
-  Cost:     HK$59.2
-  Time:     51 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #88
-  Cost:     HK$59.2
-  Time:     107 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> MTR -> MTR -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #89
-  Cost:     HK$67.7
-  Time:     120 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> Minibus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #90
-  Cost:     HK$59.5
-  Time:     103 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #91
-  Cost:     HK$59.9
-  Time:     124 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #92
-  Cost:     HK$60.0
-  Time:     99 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #93
-  Cost:     HK$60.4
-  Time:     97 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> MTR -> MTR -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #94
-  Cost:     HK$60.7
-  Time:     106 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #95
-  Cost:     HK$61.7
-  Time:     98 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #96
-  Cost:     HK$62.1
-  Time:     152 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Minibus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #97
-  Cost:     HK$53.9
-  Time:     92 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #98
-  Cost:     HK$62.8
-  Time:     104 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #99
-  Cost:     HK$62.9
-  Time:     101 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #100
-  Cost:     HK$63.2
-  Time:     102 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> MTR -> MTR -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #101
-  Cost:     HK$71.7
-  Time:     115 min
-  Segments: 8
-  Path:     HKU -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> MTR -> Minibus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #102
-  Cost:     HK$63.5
-  Time:     98 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #103
-  Cost:     HK$55.3
-  Time:     70 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Minibus -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #104
-  Cost:     HK$63.8
-  Time:     86 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #105
-  Cost:     HK$55.7
-  Time:     68 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #106
-  Cost:     HK$64.2
-  Time:     84 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #107
-  Cost:     HK$56.1
-  Time:     87 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #108
-  Cost:     HK$64.9
-  Time:     101 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Prince Edward -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #109
-  Cost:     HK$64.9
-  Time:     157 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Minibus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #110
-  Cost:     HK$56.7
-  Time:     84 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #111
-  Cost:     HK$65.7
-  Time:     93 min
-  Segments: 9
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #112
-  Cost:     HK$57.5
-  Time:     65 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Minibus -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #113
-  Cost:     HK$66.1
-  Time:     147 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Ferry -> Minibus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #114
-  Cost:     HK$57.9
-  Time:     63 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #115
-  Cost:     HK$58.1
-  Time:     62 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Minibus -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #116
-  Cost:     HK$58.5
-  Time:     60 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #117
-  Cost:     HK$58.9
-  Time:     79 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> MTR -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #118
-  Cost:     HK$58.9
-  Time:     125 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #119
-  Cost:     HK$67.8
-  Time:     81 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #120
-  Cost:     HK$68.2
-  Time:     79 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #121
-  Cost:     HK$60.3
-  Time:     57 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Minibus -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #122
-  Cost:     HK$60.3
-  Time:     103 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Minibus -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #123
-  Cost:     HK$68.9
-  Time:     152 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> Bus -> Minibus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #124
-  Cost:     HK$60.7
-  Time:     55 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #125
-  Cost:     HK$60.7
-  Time:     101 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #126
-  Cost:     HK$61.1
-  Time:     120 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #127
-  Cost:     HK$61.4
-  Time:     118 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #128
-  Cost:     HK$69.9
-  Time:     134 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Minibus -> Bus -> Bus -> Minibus -> MTR -> MTR
--------------------------------------------------------
-Route #129
-  Cost:     HK$61.7
-  Time:     117 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #130
-  Cost:     HK$62.5
-  Time:     98 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Minibus -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #131
-  Cost:     HK$62.9
-  Time:     96 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #132
-  Cost:     HK$62.9
-  Time:     120 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #133
-  Cost:     HK$63.1
-  Time:     95 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Minibus -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #134
-  Cost:     HK$63.5
-  Time:     93 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #135
-  Cost:     HK$63.6
-  Time:     113 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #136
-  Cost:     HK$63.9
-  Time:     112 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> Minibus -> Bus -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #137
-  Cost:     HK$64.2
-  Time:     110 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #138
-  Cost:     HK$64.3
-  Time:     98 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #139
-  Cost:     HK$64.7
-  Time:     96 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> MTR -> MTR -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #140
-  Cost:     HK$65.1
-  Time:     115 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #141
-  Cost:     HK$65.3
-  Time:     90 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Minibus -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #142
-  Cost:     HK$73.9
-  Time:     129 min
-  Segments: 9
-  Path:     HKU -> Kennedy Town -> Central -> Tsim Sha Tsui -> Tsuen Wan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> Minibus -> Bus -> Bus -> MTR -> MTR -> MTR
--------------------------------------------------------
-Route #143
-  Cost:     HK$65.7
-  Time:     88 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> MTR -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #144
-  Cost:     HK$65.7
-  Time:     112 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #145
-  Cost:     HK$66.4
-  Time:     105 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Prince Edward -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #146
-  Cost:     HK$66.4
-  Time:     151 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Minibus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #147
-  Cost:     HK$66.5
-  Time:     93 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #148
-  Cost:     HK$66.9
-  Time:     91 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> MTR -> MTR -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #149
-  Cost:     HK$67.1
-  Time:     90 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #150
-  Cost:     HK$67.5
-  Time:     88 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> MTR -> MTR -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #151
-  Cost:     HK$67.9
-  Time:     107 min
-  Segments: 10
-  Path:     HKU -> Kennedy Town -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> Tram -> MTR -> MTR -> MTR -> Bus -> Bus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #152
-  Cost:     HK$68.6
-  Time:     146 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Minibus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #153
-  Cost:     HK$69.2
-  Time:     143 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Minibus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #154
-  Cost:     HK$69.3
-  Time:     85 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Minibus -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #155
-  Cost:     HK$69.7
-  Time:     83 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Jordan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> MTR -> MTR -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #156
-  Cost:     HK$70.4
-  Time:     146 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Minibus -> Ferry -> Tram -> Tram
--------------------------------------------------------
-Route #157
-  Cost:     HK$71.4
-  Time:     138 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> Minibus -> Bus -> Bus -> Minibus -> Ferry -> MTR -> MTR
--------------------------------------------------------
-Route #158
-  Cost:     HK$72.6
-  Time:     141 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Minibus -> Ferry -> Tram -> MTR
--------------------------------------------------------
-Route #159
-  Cost:     HK$73.2
-  Time:     138 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Minibus -> Ferry -> MTR -> Tram
--------------------------------------------------------
-Route #160
-  Cost:     HK$75.4
-  Time:     133 min
-  Segments: 10
-  Path:     HKU -> Central -> Admiralty -> Kowloon Tong -> Sha Tin -> Mong Kok -> Tsuen Wan -> Tsim Sha Tsui -> North Point -> Causeway Bay -> Wan Chai
-  Modes:    MTR -> MTR -> MTR -> MTR -> Bus -> Bus -> Minibus -> Ferry -> MTR -> MTR
+  Hops:     5
+  Path:     Jordan -> Mong Kok -> Sha Tin -> Kowloon Tong -> Admiralty -> Central -> Tsim Sha Tsui
+  Modes:    Minibus -> Bus -> Minibus -> MTR -> MTR -> Bus
 -------------------------------------------------------
