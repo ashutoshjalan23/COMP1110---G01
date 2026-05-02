@@ -32,6 +32,18 @@ try:
 except ImportError:
     _RT_GEO = False
 
+# ---- Backend availability check ----
+import urllib.request
+
+_BACKEND_URL = os.environ.get("HK_TRANSIT_BACKEND_URL", "http://localhost:8000")
+
+def _backend_running() -> bool:
+    try:
+        with urllib.request.urlopen(f"{_BACKEND_URL}/health", timeout=2) as resp:
+            return resp.status == 200
+    except Exception:
+        return False
+
 # ---- Global state ----
 network = None
 
@@ -218,9 +230,14 @@ def plan_journey():
 
     # Build, score, rank
     # Use real-time APIs when "fastest" is among the selected preferences
-    use_realtime = "fastest" in preferences
-    if use_realtime:
-        print(info("Fetching live traffic & ETA data for fastest ranking..."))
+    # and the backend server is reachable (avoids hanging on sequential API calls)
+    use_realtime = False
+    if "fastest" in preferences:
+        if _backend_running():
+            use_realtime = True
+            print(info("Fetching live traffic & ETA data for fastest ranking..."))
+        else:
+            print(warning("Backend not running — using static times for fastest ranking."))
         print()
     journeys = build_journeys(paths, network, realtime=use_realtime)
 
