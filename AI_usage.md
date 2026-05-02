@@ -1,21 +1,16 @@
 ﻿# AI Tool Usage Log
 
-## Overview
-This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this project for transparency and academic integrity.
-
----
-
 ## Usage Summary
 
 | Date | Feature/File | Task | AI Tool | Description | Name |
 |------|-------------|------|---------|-------------|---------|
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Aikagra Gupta |
-| 2026-05-01 | README, frontend naming, Vercel deployment configuration | Rename old `spline-ui` references to `open-transit`, align README with the actual repo, and deploy the frontend | OpenAI Codex (GPT-5) | Prompt used: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project" | Aikagra Gupta |
+| 2026-05-01 | README, frontend naming, Vercel deployment configuration | Clean stale frontend naming, align README with the repo, and deploy the frontend | OpenAI Codex (GPT-5) | Prompt used: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project" | Aikagra Gupta |
 | 2026-05-02 | Network summary, backend API, frontend summary panel, tests | Add network summary metrics to the CLI, API, deployed backend, frontend, README, and tests | OpenAI Codex (GPT-5) | Prompt used: "add a network summary functionality as well Number of stops Number of segments Average time to commute Average cost Ye 4 defial" | Aikagra Gupta |
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | Claude Code (Opus 4.6) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Ashutosh Jalan |
 | 2026-04-17 | frontend | UI implementation  | Claude Code (Opus 4.6) | Prompt used: "Create UI using next.js framework for our python based Smart Transport Public Advisor. Ensure that it connects with python backend properly and uses live ETA as well. Create a proper map based layout for stops/segments we have in our data " | Ashutosh Jalan |
-| 2026-05-01 | 	ests/test_*.py | Updated test files from tests.zip with proper sys.path imports and verbosity | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `access the tests zip folder in HKU folder - sem 2 - comp 1110 - then do changes` | Shikhar Mathur |
-| 2026-05-01 | 	ests/test_*.py | Added descriptive input/output logging to all test files showing inputs passed and outputs received | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `in the test files currently the output just shows that the function is working, make it more descriptive to show what inputs were passed and whats outputs are being received` | Shikhar Mathur |
+| 2026-05-01 | `tests/test_*.py` | Updated test files from tests.zip with proper sys.path imports and verbosity | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `access the tests zip folder in HKU folder - sem 2 - comp 1110 - then do changes` | Shikhar Mathur |
+| 2026-05-01 | `tests/test_*.py` | Added descriptive input/output logging to all test files showing inputs passed and outputs received | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `in the test files currently the output just shows that the function is working, make it more descriptive to show what inputs were passed and whats outputs are being received` | Shikhar Mathur |
 ---
 
 ## Detailed Entries
@@ -34,11 +29,11 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 ### Entry 2
 - **Date**: 2026-05-01
 - **Name**: Aikagra Gupta
-- **Feature/File**: `README.md`, `AI_usage.md`, `.claude/settings.local.json`, `frontend/package.json`, `frontend/package-lock.json`, `frontend/README.md`, `frontend/app/layout.tsx`, `frontend/app/page.tsx`, `frontend/app/components/JourneyPanel.tsx`
+- **Feature/File**: `README.md`, `AI_usage.md`, `frontend/package.json`, `frontend/package-lock.json`, `frontend/README.md`, `frontend/app/layout.tsx`, `frontend/app/page.tsx`, `frontend/app/components/JourneyPanel.tsx`
 - **AI Tool Used**: OpenAI Codex (GPT-5)
 - **Task**: Make the AI usage entries more detailed, remove stale project names, rename the frontend/Vercel identity to `open-transit`, and deploy the frontend.
 - **Prompt Used**: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project"
-- **Description**: The AI audited the README against the current repository layout, replaced stale `spline-ui` branding with `open-transit`, updated frontend display names, relinked the Vercel project, corrected the Vercel framework preset to Next.js, and prepared the production deployment link.
+- **Description**: The AI audited the README against the current repository layout, cleaned stale frontend naming, updated display names, relinked the Vercel project, corrected the Vercel framework preset to Next.js, and prepared the production deployment link.
 - **Code Generated**: Partial
 - **Code Modified After**: Yes
 
@@ -96,19 +91,3 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 - **Description**: The AI read all four test files and the source modules (network.py, journey.py, file_io.py, backend_api.py) to understand the function signatures. It then added detailed print statements to every test method showing: the function being called, the input parameters, the actual output values, the expected values, and PASS/FAIL status. All 16 tests were verified passing with the new descriptive output.
 - **Code Generated**: Yes
 - **Code Modified After**: Yes (fixed one key name from 'seg_id' to 'segId' to match the serialised API response format)
----
-
-## Guidelines
-
-- **Full disclosure**: Record all AI tool usage, including minor assists
-- **Task clarity**: Describe what the AI helped with (e.g., "debugging", "code generation", "explanation")
-- **Honesty**: Note if AI-generated code was used as-is or modified
-- **Code Generated vs. Modified**: Specify whether AI output was accepted directly or substantially changed
-
----
-
-## Notes
-
-- This log is maintained for academic integrity purposes
-- AI tools can assist but should not replace understanding
-- All submitted work remains the student's responsibility

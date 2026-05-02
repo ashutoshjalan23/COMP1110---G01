@@ -2,17 +2,13 @@
 
 Topic B project for COMP1110, Semester 2 2025-2026.
 
-This repository contains a Python public-transport journey planner and an optional Next.js map frontend. The Python program models Hong Kong transport as a directed graph of stops and segments, generates candidate journeys with depth-limited DFS, and ranks them by cheapest, fastest, or fewest hops.
+This repository contains a Python public-transport journey planner and a Next.js map frontend. The Python program models Hong Kong transport as a directed graph, generates candidate journeys with depth-limited DFS, and ranks them by cheapest, fastest, or fewest hops.
 
 ## Deployed Frontend
 
-Vercel project name: `open-transit`
-
 Production link: [https://open-transit-ten.vercel.app](https://open-transit-ten.vercel.app)
 
-Important: the Vercel app is the visual frontend. Route planning and live ETA data come from the Python backend. The deployed frontend connects to [OpenTransit-backend](https://github.com/ashutoshjalan23/OpenTransit-backend) at [https://open-transit-backend.vercel.app](https://open-transit-backend.vercel.app) through the Vercel `BACKEND_URL` environment variable. Local testing still works by running `python backend_api.py`; the frontend's same-origin `/api/backend/...` proxy falls back to `http://127.0.0.1:8000`.
-
-Naming note: the tracked frontend folder is `frontend/`; its package name and Vercel project name are `open-transit`. The old local `spline-ui` name has been removed because this project does not use Spline.
+Backend link: [https://open-transit-backend.vercel.app](https://open-transit-backend.vercel.app)
 
 ## Language And Environment
 
@@ -41,7 +37,7 @@ npm install
 - `journey.py`: journey totals, hop counting, realtime adjustment, and ranking by preference
 - `file_io.py`: CSV loading/saving with validation for missing, empty, malformed, and inconsistent files
 - `check.py`: live transport helpers for geocoding, MTR ETA, KMB ETA, nearby-stop lookup, and TDAS traffic data
-- `backend_api.py`: HTTP API used by the frontend (`/health`, `/network`, `/summary`, `/eta`, `/plan`); mirrored in the deployment repo [OpenTransit-backend](https://github.com/ashutoshjalan23/OpenTransit-backend)
+- `backend_api.py`: HTTP API used by the frontend (`/health`, `/network`, `/summary`, `/eta`, `/plan`)
 - `ui.py`: terminal display helpers
 - `data/stops.csv`: 15 stop records with IDs, names, coordinates, and available lines
 - `data/segments.csv`: 54 directed transport segments with mode, duration, and cost
@@ -101,7 +97,7 @@ Endpoints:
 - `GET /eta?stopId=S01`
 - `POST /plan`
 
-`/network` returns stops, segments, and the same summary metrics shown in the frontend. `/summary` returns only the four summary values: number of stops, number of segments, average direct commute time, and average cost.
+`/network` returns stops, segments, and summary metrics. `/summary` returns only the summary metrics.
 
 ## Run The Frontend Locally
 
@@ -112,11 +108,11 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-The frontend calls `/api/backend/...` by default. That Next.js proxy uses `BACKEND_URL` when set, then `NEXT_PUBLIC_BACKEND_URL`, then `http://127.0.0.1:8000` for local development.
+The frontend calls `/api/backend/...`, which proxies to the Python backend.
 
 ## Live Data Feature
 
-The baseline COMP1110 requirement is a static hand-crafted network and simple route ranking. This project also adds live data:
+The project includes live data support:
 
 - MTR ETA lookup
 - KMB ETA lookup
@@ -124,7 +120,7 @@ The baseline COMP1110 requirement is a static hand-crafted network and simple ro
 - geocoding for user-entered Hong Kong locations
 - TDAS traffic speed lookup for bus/minibus time adjustment
 
-If external APIs are unavailable, the planner falls back to static assumptions so the core project still works.
+If external APIs are unavailable, the planner falls back to static timing assumptions.
 
 ## Tests
 
