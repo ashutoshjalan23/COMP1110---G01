@@ -45,7 +45,15 @@ export interface EtaResponse {
   entries: EtaEntry[];
 }
 
+export interface NetworkSummary {
+  numberOfStops: number;
+  numberOfSegments: number;
+  averageCommuteTime: number;
+  averageCost: number;
+}
+
 export interface NetworkResponse {
   stops: Stop[];
   segments: Segment[];
+  summary: NetworkSummary;
 }

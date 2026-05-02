@@ -113,12 +113,30 @@ class BackendHttpTests(unittest.TestCase):
         print(f"  Input: GET /network")
         status, payload = self.fetch_json("/network")
         print(f"  Output: status={status}, {len(payload['stops'])} stops, {len(payload['segments'])} segments")
+        print(f"  Output: summary={payload['summary']}")
         print(f"  Sample stop: {payload['stops'][0]}")
         self.assertEqual(status, 200)
         self.assertEqual(len(payload["stops"]), 15)
         print(f"  PASS: stops count = {len(payload['stops'])} (expected 15)")
         self.assertEqual(len(payload["segments"]), 54)
         print(f"  PASS: segments count = {len(payload['segments'])} (expected 54)")
+        self.assertEqual(payload["summary"]["numberOfStops"], 15)
+        self.assertEqual(payload["summary"]["numberOfSegments"], 54)
+        self.assertEqual(payload["summary"]["averageCommuteTime"], 10.9)
+        self.assertEqual(payload["summary"]["averageCost"], 6.0)
+
+    def test_summary_endpoint_returns_core_network_metrics(self):
+        print("\n--- test_summary_endpoint_returns_core_network_metrics ---")
+        print(f"  Input: GET /summary")
+        status, payload = self.fetch_json("/summary")
+        print(f"  Output: status={status}, payload={payload}")
+        self.assertEqual(status, 200)
+        self.assertEqual(payload, {
+            "numberOfStops": 15,
+            "numberOfSegments": 54,
+            "averageCommuteTime": 10.9,
+            "averageCost": 6.0,
+        })
 
     def test_plan_endpoint_accepts_static_route_request(self):
         print("\n--- test_plan_endpoint_accepts_static_route_request ---")

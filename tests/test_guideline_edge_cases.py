@@ -76,6 +76,23 @@ class GuidelineEdgeCaseTests(unittest.TestCase):
             with self.subTest(raw=raw):
                 self.assertEqual(network.resolve_stop_id(raw), expected)
 
+    def test_network_summary_handles_empty_and_real_datasets(self):
+        empty_network = Network()
+        self.assertEqual(empty_network.summary(), {
+            "numberOfStops": 0,
+            "numberOfSegments": 0,
+            "averageCommuteTime": 0.0,
+            "averageCost": 0.0,
+        })
+
+        network = load_network()
+        self.assertEqual(network.summary(), {
+            "numberOfStops": 15,
+            "numberOfSegments": 54,
+            "averageCommuteTime": 10.9,
+            "averageCost": 6.0,
+        })
+
     def test_file_io_reports_empty_and_malformed_files(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             empty_file = os.path.join(temp_dir, "empty.csv")

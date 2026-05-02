@@ -11,6 +11,7 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 |------|-------------|------|---------|-------------|---------|
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | OpenAI Codex (GPT-5) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Aikagra Gupta |
 | 2026-05-01 | README, frontend naming, Vercel deployment configuration | Rename old `spline-ui` references to `open-transit`, align README with the actual repo, and deploy the frontend | OpenAI Codex (GPT-5) | Prompt used: "make the AI usage entries detailed and fix the readme, change the vercel deployment link to a simpler name, open transit, deploy it, change the folder from spline ui to something else because we dont use it in vercel, add it in the readme, and fix the readme remove anything that is not in the project and check if it matches everything 1:1 in the project, there shouldn't be any problems with that, i believe we dont use spline as well in the project" | Aikagra Gupta |
+| 2026-05-02 | Network summary, backend API, frontend summary panel, tests | Add network summary metrics to the CLI, API, deployed backend, frontend, README, and tests | OpenAI Codex (GPT-5) | Prompt used: "add a network summary functionality as well Number of stops Number of segments Average time to commute Average cost Ye 4 defial" | Aikagra Gupta |
 | 2026-05-01 | Guideline audit, edge-case hardening, tests, documentation | Review COMP1110 compliance, run stress tests, and patch validation gaps | Claude Code (Opus 4.6) | Prompt used: "check if the project follows full guidelines, perform a stress test and make sure no edge cases are left untouched, make sure the project guidelines are being implemented 1:1 in the code" | Ashutosh Jalan |
 | 2026-04-17 | frontend | UI implementation  | Claude Code (Opus 4.6) | Prompt used: "Create UI using next.js framework for our python based Smart Transport Public Advisor. Ensure that it connects with python backend properly and uses live ETA as well. Create a proper map based layout for stops/segments we have in our data " | Ashutosh Jalan |
 | 2026-05-01 | 	ests/test_*.py | Updated test files from tests.zip with proper sys.path imports and verbosity | Gemini (Antigravity - Claude Opus 4.6 Thinking) | Prompt used: `access the tests zip folder in HKU folder - sem 2 - comp 1110 - then do changes` | Shikhar Mathur |
@@ -42,6 +43,17 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 - **Code Modified After**: Yes
 
 ### Entry 3
+- **Date**: 2026-05-02
+- **Name**: Aikagra Gupta
+- **Feature/File**: `network.py`, `main.py`, `backend_api.py`, `tests/test_backend_api.py`, `tests/test_guideline_edge_cases.py`, `frontend/app/lib/types.ts`, `frontend/app/page.tsx`, backend deployment repo
+- **AI Tool Used**: OpenAI Codex (GPT-5)
+- **Task**: Add a network summary feature covering number of stops, number of segments, average commute time, and average cost.
+- **Prompt Used**: "add a network summary functionality as well Number of stops Number of segments Average time to commute Average cost Ye 4 defial"
+- **Description**: The AI added a shared `Network.summary()` method, exposed the summary through `/network` and a dedicated `/summary` endpoint, displayed the four metrics in the terminal network map and the web map overlay, mirrored the API changes in the backend deployment repository, updated README endpoint documentation, and added regression tests for empty and real datasets.
+- **Code Generated**: Partial
+- **Code Modified After**: Yes
+
+### Entry 4
 - **Date**: 2026-05-01
 - **Name**: Ashutosh Jalan
 - **Feature/File**: guideline audit, edge-case hardening, tests, and documentation
@@ -52,7 +64,7 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 - **Code Generated**: Partial
 - **Code Modified After**: Yes
 
-### Entry 4
+### Entry 5
 - **Date**: 2026-04-17
 - **Name**: Ashutosh Jalan
 - **Feature/File**: `frontend/`
@@ -63,7 +75,7 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 - **Code Generated**: Partial
 - **Code Modified After**: Yes
 
-### Entry 5
+### Entry 6
 - **Date**: 2026-05-01
 - **Name**: Shikhar Mathur
 - **Feature/File**: `tests/test_backend_api.py`, `tests/test_file_io.py`, `tests/test_journey.py`, `tests/test_network.py`
@@ -74,7 +86,7 @@ This document tracks the use of AI tools (GitHub Copilot, Claude, etc.) in this 
 - **Code Generated**: Partial
 - **Code Modified After**: No
 
-### Entry 6
+### Entry 7
 - **Date**: 2026-05-01
 - **Name**: Shikhar Mathur
 - **Feature/File**: `tests/test_backend_api.py`, `tests/test_file_io.py`, `tests/test_journey.py`, `tests/test_network.py`

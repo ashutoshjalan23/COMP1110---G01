@@ -41,7 +41,7 @@ npm install
 - `journey.py`: journey totals, hop counting, realtime adjustment, and ranking by preference
 - `file_io.py`: CSV loading/saving with validation for missing, empty, malformed, and inconsistent files
 - `check.py`: live transport helpers for geocoding, MTR ETA, KMB ETA, nearby-stop lookup, and TDAS traffic data
-- `backend_api.py`: HTTP API used by the frontend (`/health`, `/network`, `/eta`, `/plan`); mirrored in the deployment repo [OpenTransit-backend](https://github.com/ashutoshjalan23/OpenTransit-backend)
+- `backend_api.py`: HTTP API used by the frontend (`/health`, `/network`, `/summary`, `/eta`, `/plan`); mirrored in the deployment repo [OpenTransit-backend](https://github.com/ashutoshjalan23/OpenTransit-backend)
 - `ui.py`: terminal display helpers
 - `data/stops.csv`: 15 stop records with IDs, names, coordinates, and available lines
 - `data/segments.csv`: 54 directed transport segments with mode, duration, and cost
@@ -97,8 +97,11 @@ Endpoints:
 
 - `GET /health`
 - `GET /network`
+- `GET /summary`
 - `GET /eta?stopId=S01`
 - `POST /plan`
+
+`/network` returns stops, segments, and the same summary metrics shown in the frontend. `/summary` returns only the four summary values: number of stops, number of segments, average direct commute time, and average cost.
 
 ## Run The Frontend Locally
 
@@ -145,6 +148,7 @@ npm run build
 - Loads network data from CSV files.
 - Handles missing, empty, malformed, and inconsistent data files.
 - Validates unknown stops, same origin/destination, menu choices, and preference modes.
+- Shows a network summary with stop count, segment count, average commute time, and average cost.
 - Generates candidate journeys using DFS with a depth limit.
 - Ranks routes by cost, time, and hop count.
 - Provides route output with cost, time, hop count, stop sequence, and mode sequence.

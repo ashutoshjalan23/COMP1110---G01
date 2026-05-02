@@ -326,6 +326,17 @@ def view_network_map():
     print(banner("NETWORK MAP", "Connections between stops"))
     print()
 
+    summary = network.summary()
+    print(section_header("NETWORK SUMMARY"))
+    print()
+    print(info(f"Number of stops: {BOLD}{summary['numberOfStops']}{RESET}"))
+    print(info(f"Number of segments: {BOLD}{summary['numberOfSegments']}{RESET}"))
+    print(info(f"Average time to commute: {BOLD}{format_time(summary['averageCommuteTime'])}{RESET}"))
+    print(info(f"Average cost: {BOLD}{format_cost(summary['averageCost'])}{RESET}"))
+    print()
+    print(section_header("CONNECTIONS"))
+    print()
+
     # Group segments by from_stop
     for sid, stop in sorted(network.stops.items()):
         outgoing = network.adj.get(sid, [])

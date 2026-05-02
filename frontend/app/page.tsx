@@ -6,7 +6,7 @@ import JourneyPanel from "./components/JourneyPanel";
 import EtaPanel from "./components/EtaPanel";
 import { backendUrl } from "./lib/backend";
 import { MODE_LEGEND } from "./lib/constants";
-import type { Journey, NetworkResponse, Segment, Stop } from "./lib/types";
+import type { Journey, NetworkResponse, NetworkSummary, Segment, Stop } from "./lib/types";
 
 const MapClient = dynamic(() => import("./components/MapClient"), {
   ssr: false,
@@ -29,6 +29,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<"plan" | "eta">("plan");
   const [stops, setStops] = useState<Stop[]>([]);
   const [segments, setSegments] = useState<Segment[]>([]);
+  const [summary, setSummary] = useState<NetworkSummary | null>(null);
   const [networkLoading, setNetworkLoading] = useState(true);
   const [networkError, setNetworkError] = useState<string | null>(null);
 
@@ -49,6 +50,7 @@ export default function Home() {
         startTransition(() => {
           setStops(data.stops);
           setSegments(data.segments);
+          setSummary(data.summary);
         });
       } catch (error) {
         if (controller.signal.aborted) {
@@ -73,6 +75,24 @@ export default function Home() {
   }, []);
 
   const networkReady = stops.length > 0 && segments.length > 0 && !networkLoading && !networkError;
+  const networkSummaryItems = [
+    {
+      label: networkError ? "backend" : "stops",
+      value: networkError ? "issue" : networkLoading ? "..." : (summary?.numberOfStops ?? stops.length).toString(),
+    },
+    {
+      label: "segments",
+      value: networkLoading ? "..." : (summary?.numberOfSegments ?? segments.length).toString(),
+    },
+    {
+      label: "avg min",
+      value: networkLoading ? "..." : summary ? summary.averageCommuteTime.toFixed(1) : "--",
+    },
+    {
+      label: "avg HK$",
+      value: networkLoading ? "..." : summary ? summary.averageCost.toFixed(1) : "--",
+    },
+  ];
 
   return (
     <div className="h-screen flex flex-col bg-[#060610] overflow-hidden">
@@ -198,13 +218,13 @@ export default function Home() {
           )}
 
           <div className="absolute top-4 right-4 z-20">
-            <div className="glass rounded-xl px-3 py-2 text-center">
-              <div className="text-lg font-bold text-shimmer leading-none">
-                {networkLoading ? "..." : stops.length}
-              </div>
-              <div className="text-[10px] text-white/30">
-                {networkError ? "backend issue" : "stops"}
-              </div>
+            <div className="glass rounded-xl px-3 py-2 grid grid-cols-2 gap-x-4 gap-y-2 min-w-[11rem] text-center">
+              {networkSummaryItems.map((item) => (
+                <div key={item.label}>
+                  <div className="text-base font-bold text-shimmer leading-none">{item.value}</div>
+                  <div className="text-[10px] text-white/30">{item.label}</div>
+                </div>
+              ))}
             </div>
           </div>
 
