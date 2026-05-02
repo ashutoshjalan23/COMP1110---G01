@@ -9,7 +9,7 @@ function backendBaseUrl() {
     process.env.BACKEND_URL ??
     process.env.NEXT_PUBLIC_BACKEND_URL ??
     DEFAULT_BACKEND_URL
-  ).replace(/\/+$/, "");
+  ).trim().replace(/\/+$/, "");
 }
 
 async function proxyToBackend(request: NextRequest) {

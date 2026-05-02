@@ -36,9 +36,20 @@ class BackendFunctionTests(unittest.TestCase):
         self.assertIn("stops", payload["routes"][0])
         print(f"  PASS: routes[0] contains 'segments' and 'stops' keys")
 
+    def test_build_plan_payload_accepts_stop_and_preference_aliases(self):
+        print("\n--- test_build_plan_payload_accepts_stop_and_preference_aliases ---")
+        payload = backend_api.build_plan_payload("so1", "2", "FASTEST", False)
+
+        print(f"  Input aliases: origin='so1', dest='2', preference='FASTEST'")
+        print(f"  Output: total={payload['total']}, shown={payload['shown']}")
+        self.assertGreater(payload["total"], 0)
+        self.assertGreater(payload["shown"], 0)
+        self.assertEqual(payload["routes"][0]["stops"][0]["id"], "S01")
+        self.assertEqual(payload["routes"][0]["stops"][-1]["id"], "S02")
+
     def test_build_eta_payload_merges_mode_entries(self):
         print("\n--- test_build_eta_payload_merges_mode_entries ---")
-        stop_id = "S01"
+        stop_id = "so1"
         print(f"  Input: build_eta_payload(stop_id='{stop_id}')")
         print(f"  Mocked: parse_mtr_entries -> [{{mode: MTR, label: 'mock mtr', times: ['2 min']}}]")
         print(f"  Mocked: parse_kmb_entries -> [{{mode: Bus, label: 'mock bus', times: ['5 min']}}]")

@@ -10,7 +10,7 @@ Vercel project name: `open-transit`
 
 Production link: [https://open-transit-ten.vercel.app](https://open-transit-ten.vercel.app)
 
-Important: the Vercel app is the visual frontend. Route planning and live ETA data come from the Python backend. The deployed frontend should connect to the separate backend repo, [OpenTransit-backend](https://github.com/ashutoshjalan23/OpenTransit-backend), through the Vercel `BACKEND_URL` environment variable. Local testing still works by running `python backend_api.py`; the frontend's same-origin `/api/backend/...` proxy falls back to `http://127.0.0.1:8000`.
+Important: the Vercel app is the visual frontend. Route planning and live ETA data come from the Python backend. The deployed frontend connects to [OpenTransit-backend](https://github.com/ashutoshjalan23/OpenTransit-backend) at [https://open-transit-backend.vercel.app](https://open-transit-backend.vercel.app) through the Vercel `BACKEND_URL` environment variable. Local testing still works by running `python backend_api.py`; the frontend's same-origin `/api/backend/...` proxy falls back to `http://127.0.0.1:8000`.
 
 Naming note: the tracked frontend folder is `frontend/`; its package name and Vercel project name are `open-transit`. The old local `spline-ui` name has been removed because this project does not use Spline.
 

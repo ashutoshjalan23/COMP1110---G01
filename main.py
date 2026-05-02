@@ -89,17 +89,12 @@ def get_stop_input(prompt_text):
         if raw.upper() == "B":
             return None
 
-        # 1. Try as stop ID
-        for sid in network.stops:
-            if sid.upper() == raw.upper():
-                return sid
-
-        # 2. Try as exact stop name
-        sid = network.get_stop_id_by_name(raw)
+        # 1. Try as stop ID, numeric shortcut, common typo, or exact stop name
+        sid = network.resolve_stop_id(raw)
         if sid:
             return sid
 
-        # 3. Partial name match (single unambiguous)
+        # 2. Partial name match (single unambiguous)
         matches = [
             s for s in network.stops.values()
             if raw.lower() in s.name.lower()
@@ -108,7 +103,7 @@ def get_stop_input(prompt_text):
             print(info(f"Matched: {matches[0].name}"))
             return matches[0].id
 
-        # 4. Real-time geocoding -> nearest network stop
+        # 3. Real-time geocoding -> nearest network stop
         if _RT_GEO:
             coords = _rt_geocode(raw)
             if coords:

@@ -60,6 +60,22 @@ class GuidelineEdgeCaseTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Unknown preference"):
             rank_journeys_multi(journeys, ["fastest", "quietest"])
 
+    def test_stop_id_resolution_accepts_obvious_user_inputs(self):
+        network = load_network()
+
+        examples = {
+            "S01": "S01",
+            "s01": "S01",
+            "so1": "S01",
+            "1": "S01",
+            "01": "S01",
+            "central": "S01",
+        }
+
+        for raw, expected in examples.items():
+            with self.subTest(raw=raw):
+                self.assertEqual(network.resolve_stop_id(raw), expected)
+
     def test_file_io_reports_empty_and_malformed_files(self):
         with tempfile.TemporaryDirectory() as temp_dir:
             empty_file = os.path.join(temp_dir, "empty.csv")

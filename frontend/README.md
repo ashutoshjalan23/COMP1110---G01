@@ -31,4 +31,4 @@ The app calls `/api/backend/...` by default. That Next.js route proxies requests
 2. `NEXT_PUBLIC_BACKEND_URL`, if a direct browser-facing backend override is needed
 3. `http://127.0.0.1:8000` for local development
 
-For production, set `BACKEND_URL` in Vercel to the deployed OpenTransit-backend URL.
+For production, set `BACKEND_URL` in Vercel to `https://open-transit-backend.vercel.app`.
